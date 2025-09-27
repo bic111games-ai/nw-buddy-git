@@ -1,6 +1,3 @@
-# Zależności
-node_modules/
-
 # Wyniki budowania
 /out-tsc/
 
@@ -30,3 +27,4 @@ Thumbs.db
 
 #### reszta do usunięcia###
 
+/node_modules/
