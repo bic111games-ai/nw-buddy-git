@@ -31,7 +31,6 @@ Thumbs.db
 #### reszta do usunięcia###
 
 
-/dist/nw-data/live/actionlists
 /dist/nw-data/live/datatables
 /dist/nw-data/live/generated
 /dist/nw-data/live/localization
