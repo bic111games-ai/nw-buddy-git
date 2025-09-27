@@ -30,7 +30,6 @@ Thumbs.db
 
 #### reszta do usunięcia###
 
-/dist
 /dist/data
 /dist/electron
 /dist/nw-data
