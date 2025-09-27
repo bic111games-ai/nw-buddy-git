@@ -1,65 +1,44 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# Zależności
+node_modules/
 
+# Wyniki budowania
+/out-tsc/
 
-
-# compiled output
-/tmp
-/out-tsc
-/app-builds
-/release
-main.js
-src/**/*.js
-!src/karma.conf.js
-*.js.map
-# dependencies
-node_modules
-yarn-error.log
-# IDEs and editors
-.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-.angular
+# Wrażliwe dane
 .env
-.wrangler
-.nwbt
-.prof
+gha-creds-*.json
 
-# IDE - VSCode
-.vscode/*
-.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# misc
-/.angular/cache
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-testem.log
-/typings
-
-# e2e
-/e2e/*.js
-!/e2e/protractor.conf.js
-/e2e/*.map
-/e2e/tracing
-/e2e/screenshots
-
-# System Files
+# Pliki systemowe
 .DS_Store
 Thumbs.db
-.nx
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
 
-.gemini/
-gha-creds-*.json
+# Ustawienia specyficzne dla Twojego edytora, które nie powinny być częścią projektu.
+.idea/
+.project/
+.settings/
+.vscode/
+# Wyjątki: pozwalamy na dzielenie się konfiguracją zadań i debugowania z zespołem
+!/.vscode/tasks.json
+!/.vscode/launch.json
+!/.vscode/extensions.json
+
+### Cache narzędzi (Tooling Cache) ###
+# Pliki tymczasowe generowane przez narzędzia do budowania projektu.
+.angular/
+.nx/
+.sass-cache/
+
+#### reszta do usunięcia###
+
+/dist
+/out-tsc
+/coverage
+/release
+*.js.map
+!/src/karma.conf.js # Wyjątek dla pliku konfiguracyjnego testów
+
+### Pliki systemowe i logi (System files & Logs) ###
+# Pliki generowane przez system operacyjny lub logi z działania aplikacji.
+npm-debug.log
+yarn-error.log
+
