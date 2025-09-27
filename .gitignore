@@ -37,8 +37,5 @@ Thumbs.db
 *.js.map
 !/src/karma.conf.js # Wyjątek dla pliku konfiguracyjnego testów
 
-### Pliki systemowe i logi (System files & Logs) ###
-# Pliki generowane przez system operacyjny lub logi z działania aplikacji.
-npm-debug.log
-yarn-error.log
+
 
