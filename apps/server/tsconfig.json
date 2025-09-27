@@ -1,9 +1,3 @@
-{
-  "extends": "../web/tsconfig.app.json",
-  "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "types": ["node"]
-  },
-  "files": ["../web/main.server.ts", "./main.ts"],
-  "include": ["./**/*"]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:cbf329f1250e72a65f6729bb29461fc53219be5d2278a4341f6f635d253af4f3
+size 215

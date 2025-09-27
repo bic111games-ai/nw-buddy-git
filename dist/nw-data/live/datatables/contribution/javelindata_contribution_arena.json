@@ -1,16 +1,3 @@
-[
-	{
-		"ContributionId": "Spawn_Killed",
-		"Category": "default",
-		"Value": 100,
-		"Shared": false,
-		"Expires": false
-	},
-	{
-		"ContributionId": "Encounter_Activated",
-		"Category": "default",
-		"Value": 100,
-		"Shared": false,
-		"Expires": false
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:a2205b6e482c916f8f5efa9591171af82e0024744fd86b2b2c1e504b671053a9
+size 268

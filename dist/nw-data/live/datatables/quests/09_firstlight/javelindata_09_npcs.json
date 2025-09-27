@@ -1,26 +1,3 @@
-[
-	{
-		"NPCId": "0907_Commander",
-		"Title": "@0907_Commander_title",
-		"GenericName": "@0907_Commander",
-		"ConversationStateId1": "0000_Old_Data"
-	},
-	{
-		"NPCId": "0908_Alchemist",
-		"Title": "@0908_Alchemist_title",
-		"GenericName": "@0908_Alchemist",
-		"ConversationStateId1": "0000_Old_Data"
-	},
-	{
-		"NPCId": "0909_Adjudicator",
-		"Title": "@0909_Adjudicator_title",
-		"GenericName": "@0909_Adjudicator",
-		"ConversationStateId1": "0000_Old_Data"
-	},
-	{
-		"NPCId": "0922_Innkeep",
-		"Title": "@0922_Innkeep_title",
-		"GenericName": "@0922_Innkeep",
-		"ConversationStateId1": "0000_Old_Data"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:07a73aa61ca273fce4e8ef800b3d20dae210904a0df930ac59324d01638d7322
+size 627

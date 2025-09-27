@@ -1,9 +1,3 @@
-{
-  "compilerOptions": {
-    "skipLibCheck": true,
-    "jsx": "react"
-  },
-  "extends": "../../tsconfig.json",
-  "exclude": ["../web/test.ts", "../web/**/*.spec.ts"],
-  "include": ["../web/**/*", "./*"]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e5f56365544aa206f293ccae4efcbe5f008eb2426e2847ccaa8f5c351e237eb0
+size 214

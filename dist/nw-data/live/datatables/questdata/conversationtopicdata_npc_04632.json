@@ -1,18 +1,3 @@
-[
-	{
-		"ConversationTopicId": "NPC_04632_State_2_Topic_0",
-		"PlayerPrompt": "@NPC_04632_State_2_Topic_0_PlayerPrompt",
-		"NPCResponse": "@NPC_04632_State_2_Topic_0_NPCResponse",
-		"RequiredLevel": "0",
-		"RequiredFaction": "None",
-		"RequiredFactionCooldown": "NotInCooldown"
-	},
-	{
-		"ConversationTopicId": "NPC_04632_State_3_Topic_0",
-		"PlayerPrompt": "@NPC_04632_State_3_Topic_0_PlayerPrompt_0",
-		"NPCResponse": "@NPC_04632_State_3_Topic_0_NPCResponse_0",
-		"RequiredLevel": "0",
-		"RequiredFaction": "None",
-		"RequiredFactionCooldown": "NotInCooldown"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:460fa6dd35cc4ff54871f5df1f97c41bd10dff1a0fa3ff4d21b4afd236444105
+size 581

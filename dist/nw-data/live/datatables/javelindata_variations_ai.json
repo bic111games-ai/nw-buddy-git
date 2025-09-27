@@ -1,12 +1,3 @@
-[
-	{
-		"VariantID": "Risen_A",
-		"Task Name": "RisenPOITopTask",
-		"Task Config Name": "RisenConfig_variant_A"
-	},
-	{
-		"VariantID": "Risen_B",
-		"Task Name": "RisenTopTask",
-		"Task Config Name": "RisenConfig_variant_B"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:d4507e1f37eefd36d1984f966bcf6e80a58bff3c274bfdfa3bb78f4b591a9f7d
+size 236

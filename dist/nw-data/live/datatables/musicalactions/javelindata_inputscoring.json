@@ -1,14 +1,3 @@
-[
-	{
-		"InputType": "Perfect",
-		"Points": 10
-	},
-	{
-		"InputType": "Great",
-		"Points": 7
-	},
-	{
-		"InputType": "Missed",
-		"Points": 0
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:1fb35aafe00f07979fde8c158064199dee804726bd26a7251dd01ae9d576bc9e
+size 154

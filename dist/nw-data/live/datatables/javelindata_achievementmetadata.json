@@ -1,7 +1,3 @@
-[
-	{
-		"AchievementMetaDataId": "MountType_Unlock_Horse",
-		"DisplayName": "@ui_mount_unlock",
-		"Acquisition": "@ui_mount_unlock_acquisition"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:5f4b6e1c1451b31651daebd2f636771f48a6fa9ed03069095be01c68ec02f75e
+size 153

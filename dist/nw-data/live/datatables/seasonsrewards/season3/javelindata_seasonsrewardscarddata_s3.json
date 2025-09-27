@@ -1,9 +1,3 @@
-[
-	{
-		"CardID": "Default",
-		"StampsToComplete": 4,
-		"LineBonusXp": 500,
-		"PatternBonusXp": 100,
-		"CardBonusXp": 300
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:ceecf24e4a33729dd62c5eaa28fb3ad4b6de817d1fde4809430efdc47d4288fa
+size 133

@@ -1,30 +1,3 @@
-[
-	{
-		"VariantID": "Essence_Firefly_Death",
-		"GatherableEntryID": "SpiritDeath"
-	},
-	{
-		"VariantID": "Essence_Firefly_Air",
-		"GatherableEntryID": "SpiritAir"
-	},
-	{
-		"VariantID": "Essence_Firefly_Earth",
-		"GatherableEntryID": "SpiritEarth"
-	},
-	{
-		"VariantID": "Essence_Firefly_Fire",
-		"GatherableEntryID": "SpiritFire"
-	},
-	{
-		"VariantID": "Essence_Firefly_Life",
-		"GatherableEntryID": "SpiritLife"
-	},
-	{
-		"VariantID": "Essence_Firefly_Soul",
-		"GatherableEntryID": "SpiritSoul"
-	},
-	{
-		"VariantID": "Essence_Firefly_Water",
-		"GatherableEntryID": "SpiritWater"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:a2402e5b1f6298569f5565c6a417915f37495a1bbf1bc67a8804dba9940a7493
+size 609

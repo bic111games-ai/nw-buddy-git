@@ -1,16 +1,3 @@
-[
-	{
-		"ContributionId": "Spawn_Killed : Season_02_EggDefend",
-		"Category": "default",
-		"Value": -1,
-		"Shared": false,
-		"Expires": false
-	},
-	{
-		"ContributionId": "Encounter_Activated",
-		"Category": "default",
-		"Value": 3,
-		"Shared": false,
-		"Expires": false
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:5ae5ff6f68dd45700c4fd5cd8ca683795a362fd45e9981474a98ef4568dc7556
+size 287

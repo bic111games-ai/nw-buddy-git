@@ -1,26 +1,3 @@
-[
-	{
-		"TrackedStatID": "ParticipateInWar",
-		"StatType": "CompleteWar",
-		"IsInvasion": false,
-		"MustWin": false
-	},
-	{
-		"TrackedStatID": "ParticipateInInvasion",
-		"StatType": "CompleteWar",
-		"IsInvasion": true,
-		"MustWin": false
-	},
-	{
-		"TrackedStatID": "WinWar",
-		"StatType": "CompleteWar",
-		"IsInvasion": false,
-		"MustWin": true
-	},
-	{
-		"TrackedStatID": "WinInvasion",
-		"StatType": "CompleteWar",
-		"IsInvasion": true,
-		"MustWin": true
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:531f58ce76303d8456812ecc5c1c733ff9c7e52d72769e608a1aeb093de074a9
+size 481

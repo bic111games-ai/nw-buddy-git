@@ -1,7 +1,3 @@
-[
-	{
-		"PlayerMilestoneModalId": "CutlassKeysRetraction",
-		"ModalScreenState": "CutlassKeysRetraction",
-		"ModalMilestoneConditional": "10_CutlassKeysUnlock_Modal"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:e8664c01f91210439be6e6dbe0cf6fc1133ca778a09e536477fef42c3bca7000
+size 175

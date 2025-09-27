@@ -1,32 +1,3 @@
-[
-	{
-		"Id": "Lazy",
-		"FishBehaviorPattern": 0,
-		"FishBehaviorLocalizationKey": "@ui_fishbehavior_lazy"
-	},
-	{
-		"Id": "EarlyAggressive",
-		"FishBehaviorPattern": 11111000,
-		"FishBehaviorLocalizationKey": "@ui_fishbehavior_hotheaded"
-	},
-	{
-		"Id": "LateAggressive",
-		"FishBehaviorPattern": 11111,
-		"FishBehaviorLocalizationKey": "@ui_fishbehavior_brooding"
-	},
-	{
-		"Id": "TotalAggressive",
-		"FishBehaviorPattern": 11111110,
-		"FishBehaviorLocalizationKey": "@ui_fishbehavior_aggressive"
-	},
-	{
-		"Id": "Sporadic",
-		"FishBehaviorPattern": 10101010,
-		"FishBehaviorLocalizationKey": "@ui_fishbehavior_sporadic"
-	},
-	{
-		"Id": "SporadicEasy",
-		"FishBehaviorPattern": 1001001,
-		"FishBehaviorLocalizationKey": "@ui_fishbehavior_sporadiceasy"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:c08cd5d5e9804be4e5a9e278e4c4fece46d949e3f9342034377e639b5473c258
+size 783

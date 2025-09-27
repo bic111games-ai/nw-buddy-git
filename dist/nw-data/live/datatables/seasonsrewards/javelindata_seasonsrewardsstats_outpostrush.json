@@ -1,26 +1,3 @@
-[
-	{
-		"TrackedStatID": "WinOutpostRushBy750",
-		"StatType": "CompleteOutpostRush",
-		"Score": 750,
-		"MustWin": true
-	},
-	{
-		"TrackedStatID": "WinOutpostRush",
-		"StatType": "CompleteOutpostRush",
-		"Score": 0,
-		"MustWin": true
-	},
-	{
-		"TrackedStatID": "PlayOutpostRush",
-		"StatType": "CompleteOutpostRush",
-		"Score": 0,
-		"MustWin": false
-	},
-	{
-		"TrackedStatID": "WinOutpostRushBy500",
-		"StatType": "CompleteOutpostRush",
-		"Score": 500,
-		"MustWin": true
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:59889b6227e2a14fdca2154736e7cdfe42670f0cff8d11417458b86dc114e531
+size 495

@@ -1,12 +1,3 @@
-[
-	{
-		"ConversationStateId": "NPC_04628_State_0",
-		"ConversationType": "Conversation",
-		"DefaultDialogue": "@NPC_04628_State_0_DefaultDialogue",
-		"IsInitialState": "true",
-		"RequiredLevel": "0",
-		"RequiredFaction": "None",
-		"RequiredFactionCooldown": "NotInCooldown",
-		"ForceConversationOpen": "false"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:7e243feebc4a138ea3c790f79915958dc131f80a841bb562492d7b7fcbcd5684
+size 325

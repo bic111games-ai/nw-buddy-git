@@ -1,10 +1,3 @@
-[
-	{
-		"ConversationTopicId": "NPC_18054_State_1_Topic_0",
-		"PlayerPrompt": "@NPC_18054_State_1_Topic_0_PlayerPrompt",
-		"NPCResponse": "@NPC_18054_State_1_Topic_0_NPCResponse",
-		"RequiredLevel": "0",
-		"RequiredFaction": "None",
-		"RequiredFactionCooldown": "NotInCooldown"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:b011494b75a6d4a111ba3f9cb29120fc0a96a9c233303dbc2039c9d15954196d
+size 290

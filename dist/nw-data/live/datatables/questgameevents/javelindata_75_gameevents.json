@@ -1,28 +1,3 @@
-[
-	{
-		"EventID": "7504_0101_devworldbluekillwolfquest_success",
-		"Level": 1,
-		"CreatureType": "Quest",
-		"UniversalExpAmount": 40,
-		"CurrencyReward": 1897,
-		"ItemReward": "QuestRewardArmorT2",
-		"GearScoreRange": 0,
-		"TerritoryStanding": 600,
-		"AzothReward": 0,
-		"AzothRewardChance": 1,
-		"EmitTelemetry": true
-	},
-	{
-		"EventID": "7505_0101_devworldbluegetcavelootquest_success",
-		"Level": 1,
-		"CreatureType": "Quest",
-		"UniversalExpAmount": 40,
-		"CurrencyReward": 1897,
-		"ItemReward": "2hWarhammerDropT2",
-		"GearScoreRange": 100,
-		"TerritoryStanding": 600,
-		"AzothReward": 0,
-		"AzothRewardChance": 1,
-		"EmitTelemetry": true
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:59383fb8a4c35a4526784ad62b4ae7ebeee38722a9d2ba5d37111a5ff8288176
+size 675

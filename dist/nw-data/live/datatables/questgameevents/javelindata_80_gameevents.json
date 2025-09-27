@@ -1,24 +1,3 @@
-[
-	{
-		"EventID": "80_placeholder_success",
-		"Level": 5,
-		"CreatureType": "Quest",
-		"UniversalExpAmount": 450,
-		"CurrencyReward": 4375,
-		"TerritoryStanding": 250,
-		"AzothReward": 0,
-		"AzothRewardChance": 1,
-		"EmitTelemetry": true
-	},
-	{
-		"EventID": "80_placeholder_interact",
-		"Level": 0,
-		"CreatureType": "Quest",
-		"UniversalExpAmount": 0,
-		"CurrencyReward": 0,
-		"TerritoryStanding": 0,
-		"AzothReward": 0,
-		"AzothRewardChance": 0,
-		"EmitTelemetry": true
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:ec34b732edf0dcdf8898f29de9f376dc08f9491d5722207f6b0be0ce69e25317
+size 499

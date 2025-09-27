@@ -1,33 +1,3 @@
-[
-	{
-		"TrackedStatID": "DamageOrHealInArena3v3",
-		"StatType": "Combat",
-		"IsPVP": true,
-		"IsHealing": true,
-		"IsDamage": true,
-		"GameMode": "Arena3v3"
-	},
-	{
-		"TrackedStatID": "DamageOrHealInRuneforgeTrial",
-		"StatType": "Combat",
-		"IsPVP": false,
-		"IsHealing": true,
-		"IsDamage": true,
-		"GameMode": "TrialSeason04"
-	},
-	{
-		"TrackedStatID": "HealAnywhere",
-		"StatType": "Combat",
-		"IsPVP": false,
-		"IsHealing": true,
-		"IsDamage": false
-	},
-	{
-		"TrackedStatID": "DamageOrHealRaid",
-		"StatType": "Combat",
-		"IsPVP": false,
-		"IsHealing": true,
-		"IsDamage": true,
-		"GameMode": "RaidCutlassKeys00"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:5e00986c9e19c3e690fbc7dd6dab7e1aa260570440a5d8c8466825df42934a1b
+size 652

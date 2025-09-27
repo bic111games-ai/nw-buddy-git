@@ -1,7 +1,3 @@
-[
-	{
-		"ConversationTopicId": "placeholderTopic_81",
-		"PlayerPrompt": "@01_Grace_Goodbye_prompt",
-		"NPCResponse": "@01_Grace_Goodbye_a"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:503bb7e9ff7d71cb4f354919a5c543d1e849197adf5d9e6c38fd27a2195b1ab2
+size 148

@@ -1,30 +1,3 @@
-[
-	{
-		"ContributionId": "Damage_Dealt",
-		"Category": "Default",
-		"Value": 0,
-		"Shared": false,
-		"Expires": true
-	},
-	{
-		"ContributionId": "Damage_Received",
-		"Category": "Default",
-		"Value": 1,
-		"Shared": false,
-		"Expires": true
-	},
-	{
-		"ContributionId": "Support",
-		"Category": "Default",
-		"Value": 0,
-		"Shared": false,
-		"Expires": true
-	},
-	{
-		"ContributionId": "Killed",
-		"Category": "Default",
-		"Value": 1,
-		"Shared": false,
-		"Expires": true
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:30c743816911b609fc26089f40b4ccf993c16e1be7586f69d1788fa074fba330
+size 499

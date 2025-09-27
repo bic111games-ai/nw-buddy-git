@@ -1,12 +1,3 @@
-[
-	{
-		"TrackedStatID": "ParticipateInDuel",
-		"StatType": "CompleteDuel",
-		"MustWin": false
-	},
-	{
-		"TrackedStatID": "WinDuel",
-		"StatType": "CompleteDuel",
-		"MustWin": true
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:a83fa8e355788ddc45042726928af86f0ede1af33bb8e9b16ec5b4139bb6d27c
+size 194

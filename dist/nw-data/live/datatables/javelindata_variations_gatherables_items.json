@@ -1,22 +1,3 @@
-[
-	{
-		"VariantID": "PotionHealthT1",
-		"GatherableEntryID": "ItemPotionHealT1",
-		"Idle_VFX": "Loot.Crate_small01"
-	},
-	{
-		"VariantID": "ClothT2",
-		"GatherableEntryID": "ItemClothT2",
-		"Idle_VFX": "Loot.Crate_small01"
-	},
-	{
-		"VariantID": "CraterKey1",
-		"GatherableEntryID": "CraterKey1",
-		"Idle_VFX": "Loot.Crate_small01"
-	},
-	{
-		"VariantID": "CraterKey2",
-		"GatherableEntryID": "CraterKey2",
-		"Idle_VFX": "Loot.Crate_small01"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:db51fe1439bc98f275e87d3f0c487878326da626747b8cdc12c96bba46feafd5
+size 463

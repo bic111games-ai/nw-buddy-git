@@ -1,27 +1,3 @@
-[
-	{
-		"Rank": 0,
-		"DisplayName": "@affinity_rank_upyr_1",
-		"MaximumInfluence": 15000
-	},
-	{
-		"Rank": 1,
-		"DisplayName": "@affinity_rank_upyr_2",
-		"MaximumInfluence": 30000
-	},
-	{
-		"Rank": 2,
-		"DisplayName": "@affinity_rank_upyr_3",
-		"MaximumInfluence": 45000
-	},
-	{
-		"Rank": 3,
-		"DisplayName": "@affinity_rank_upyr_4",
-		"MaximumInfluence": 75000
-	},
-	{
-		"Rank": 4,
-		"DisplayName": "@affinity_rank_upyr_5",
-		"MaximumInfluence": 150000
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:a6baa8ba1f2f40b2e19788dad306fecb88fe0ba55e046d0f39f512aaa67ef740
+size 479

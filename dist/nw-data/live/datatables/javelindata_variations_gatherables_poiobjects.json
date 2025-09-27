@@ -1,32 +1,3 @@
-[
-	{
-		"VariantID": "POI_WoodPile",
-		"StartSlice": "slices/Gatherables/POI/POI_Gath_Start_LogPile_B.dynamicslice",
-		"GatherableEntryID": "WoodPile"
-	},
-	{
-		"VariantID": "POI_TimberStack",
-		"StartSlice": "slices/Gatherables/POI/POI_Gath_Start_LogPile_B.dynamicslice",
-		"GatherableEntryID": "TimberPile"
-	},
-	{
-		"VariantID": "POI_OilBucket",
-		"StartSlice": "slices/Gatherables/POI/POI_Gath_Start_OilBucket.dynamicslice",
-		"GatherableEntryID": "OilBucket"
-	},
-	{
-		"VariantID": "POI_OilBarrel",
-		"StartSlice": "slices/Gatherables/POI/POI_Gath_Start_OilBarrel.dynamicslice",
-		"GatherableEntryID": "OilBarrel"
-	},
-	{
-		"VariantID": "POI_Barricade",
-		"StartSlice": "slices/POIs/Assembly/Crafting/Props/Doors_Windows/PRP_Door_Barricade_A.dynamicslice",
-		"GatherableEntryID": "WoodBarricade"
-	},
-	{
-		"VariantID": "POI_Stonepile",
-		"StartSlice": "slices/POIs/Assembly/Nature/AngryEarth/AngryEarth_Rockpile_SM_A.dynamicslice",
-		"GatherableEntryID": "StonePile"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:600e866d48e858546f3a5a6c251b15cfd66e751f892ed2e09c1738b23ca787d6
+size 1001

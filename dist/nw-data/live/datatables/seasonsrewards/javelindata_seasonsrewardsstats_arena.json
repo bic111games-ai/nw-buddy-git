@@ -1,26 +1,3 @@
-[
-	{
-		"TrackedStatID": "PlayArena3x3",
-		"StatType": "CompleteArena",
-		"MustWin": false,
-		"GameModeResult": "Victory,Defeat,Tie"
-	},
-	{
-		"TrackedStatID": "WinArena3x3",
-		"StatType": "CompleteArena",
-		"MustWin": true,
-		"GameModeResult": "Victory"
-	},
-	{
-		"TrackedStatID": "FlawlessVictoryArena3x3",
-		"StatType": "CompleteArena",
-		"MustWin": true,
-		"GameModeResult": "Victory"
-	},
-	{
-		"TrackedStatID": "WinArena3x3Map2",
-		"StatType": "CompleteArena",
-		"MustWin": true,
-		"GameModeResult": "Victory"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:bb66e94107d4afd0ceadd4d857cd4cec313729fb38cea858c60f9b9e1502917e
+size 540

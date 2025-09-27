@@ -1,27 +1,3 @@
-[
-	{
-		"PaperdollId": "instrument-flute-slot",
-		"Name": "@ui_instrument-flute-slot_name",
-		"ClefIconPath": "lyshineui/images/hud/musicalactions/icon_trebleclef.webp"
-	},
-	{
-		"PaperdollId": "instrument-guitar-slot",
-		"Name": "@ui_instrument-guitar-slot_name",
-		"ClefIconPath": "lyshineui/images/hud/musicalactions/icon_trebleclef.webp"
-	},
-	{
-		"PaperdollId": "instrument-mandolin-slot",
-		"Name": "@ui_instrument-mandolin-slot_name",
-		"ClefIconPath": "lyshineui/images/hud/musicalactions/icon_trebleclef.webp"
-	},
-	{
-		"PaperdollId": "instrument-uprightbass-slot",
-		"Name": "@ui_instrument-uprightbass-slot_name",
-		"ClefIconPath": "lyshineui/images/hud/musicalactions/icon_bassclef.webp"
-	},
-	{
-		"PaperdollId": "instrument-drums-slot",
-		"Name": "@ui_instrument-drums-slot_name",
-		"ClefIconPath": "lyshineui/images/hud/musicalactions/icon_drumclef.webp"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:8a8a6de0d2c6baaebe1276ca8c04f88867d2d0094ea1f5ce7553ae8a7508cc06
+size 894

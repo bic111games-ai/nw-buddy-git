@@ -1,8 +1,3 @@
-[
-	{
-		"ConversationTopicId": "7506_Spawn_joke",
-		"PlayerPrompt": "@NPC_Topic_7506_00_Spawn_Prompt",
-		"NPCResponse": "@NPC_Topic_7506_00_Spawn_Dialogue",
-		"AchievementUnlock": "DevWorld_Spawn_TopicUnlock"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:2939008588d3d9ddb0450141adf8c3b40857f611f0c1cedd5a7ac3dd39c9ab4e
+size 219

@@ -1,11 +1,3 @@
-[
-	{
-		"TrackedStatID": "CaptureFCP",
-		"StatType": "CaptureFCP"
-	},
-	{
-		"TrackedStatID": "CaptureFCPSS",
-		"StatType": "CaptureFCP",
-		"RequiredWorldTag": "SeasonalServer"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:bfd27de4ca4d987238a35913fb4d86ceca857efe3eac528b6a416c83bc98d9f5
+size 188

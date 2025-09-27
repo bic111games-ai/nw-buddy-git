@@ -1,16 +1,3 @@
-[
-	{
-		"oldAppearanceId": "m_graverobberlight_gloves",
-		"newAppearanceId": "m_graverobberlight_hands",
-		"oldAppearanceName": "graverobberlight_gloves_TransmogName",
-		"newAppearanceName": "graverobberlight_hands_TransmogName",
-		"gender": "male"
-	},
-	{
-		"oldAppearanceId": "f_graverobberlight_gloves",
-		"newAppearanceId": "f_graverobberlight_hands",
-		"oldAppearanceName": "graverobberlight_gloves_TransmogName",
-		"newAppearanceName": "graverobberlight_hands_TransmogName",
-		"gender": "female"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:bbff9f8ea09a4192184754be7e7103774ce4b47f2fc70b52ae328846484d478d
+size 519

@@ -1,26 +1,3 @@
-[
-	{
-		"VariantID": "GlyphBridgeIsland_09FL12",
-		"GatherableEntryID": "Gimmick_DestructibleWalls",
-		"AmbientType": "Bush"
-	},
-	{
-		"VariantID": "FL_PoisonPolyp_a",
-		"GatherableEntryID": "Gimmick_PoisonPolyp",
-		"AmbientType": "Bush"
-	},
-	{
-		"VariantID": "FL_PoisonPolyp_b",
-		"GatherableEntryID": "Gimmick_PoisonPolyp",
-		"AmbientType": "Bush"
-	},
-	{
-		"VariantID": "FL_PoisonPolyp_c",
-		"GatherableEntryID": "Gimmick_PoisonPolyp",
-		"AmbientType": "Bush"
-	},
-	{
-		"VariantID": "gimmick_cave_in_fl",
-		"GatherableEntryID": "gimmick_cave_in_fl"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:8785efa49c05353e79473e37d96479798325ac0cc8d1d2922820b96381c24978
+size 577

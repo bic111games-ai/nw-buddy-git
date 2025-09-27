@@ -1,12 +1,3 @@
-{
-  "PAGES": {
-      "HOME": {
-          "TITLE": "App works !",
-          "GO_TO_DETAIL": "Go to Detail"
-      },
-      "DETAIL": {
-        "TITLE": "Detail page !",
-        "BACK_TO_HOME": "Back to Home"
-    }
-  }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:01664b64cbd60d93b2e62b7b74a3a28685af96df28cc507eca179e5d3365d230
+size 230

@@ -1,12 +1,3 @@
-[
-	{
-		"ConversationTopicId": "Reekwater_Dungeon_Scylla_Offering",
-		"PlayerPrompt": "@Reekwater_Dungeon_Scylla_01_Prompt",
-		"NPCResponse": "@Reekwater_Dungeon_Scylla_01_Response"
-	},
-	{
-		"ConversationTopicId": "Reekwater_Dungeon_Scylla_Worthy",
-		"PlayerPrompt": "@Reekwater_Dungeon_Scylla_02_Prompt",
-		"NPCResponse": "@Reekwater_Dungeon_Scylla_02_Response"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:7ab1db7e6f6f45c06274dec1bb5f6a9b87a98882384bd7ab93d92655b92b3c88
+size 377

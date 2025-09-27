@@ -1,9 +1,3 @@
-[
-	{
-		"VariantID": "DUMMYENTRY",
-		"depletedVFX_Offset_Z": 0,
-		"gatheringVFX_Offzet_Z": 0,
-		"interactionMarker_Offset_Z": 0,
-		"ShowOnCompass": 0
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:6709cc1e86c4a8aff9277a2865dcdc12c02917a647b03d46fe4b24af0a31e24a
+size 161

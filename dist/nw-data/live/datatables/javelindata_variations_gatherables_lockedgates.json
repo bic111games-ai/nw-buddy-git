@@ -1,12 +1,3 @@
-[
-	{
-		"VariantID": "Ancient_S",
-		"GatherableEntryID": "GateAncientSmall",
-		"Name": "@LockedGate_DisplayName"
-	},
-	{
-		"VariantID": "Damned_T2",
-		"GatherableEntryID": "GateAncientLarge",
-		"Name": "@LockedGate_DisplayName"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:e493be22f8f68580820b97560de0bec8bd9598a93d6baa20e1bba957984976f7
+size 241

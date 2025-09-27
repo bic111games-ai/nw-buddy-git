@@ -1,17 +1,3 @@
-[
-	{
-		"ConversationTopicId": "C91_FQ_08_FisherKing_T1",
-		"PlayerPrompt": "@C91_FQ_08_FisherKing_turnin_prompt",
-		"NPCResponse": "@C91_FQ_08_FisherKing_turnin"
-	},
-	{
-		"ConversationTopicId": "C91_Khadijah_ExplainHotspots",
-		"PlayerPrompt": "@C91_Khadijah_ExplainHotspots_prompt",
-		"NPCResponse": "@C91_Khadijah_ExplainHotspots_response"
-	},
-	{
-		"ConversationTopicId": "C91_Ishii_ExplainHotspots",
-		"PlayerPrompt": "@C91_Ishii_ExplainHotspots_prompt",
-		"NPCResponse": "@C91_Ishii_ExplainHotspots_response"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:511288f021fbc8942fd45da7fa410a2ec40cd53fbfa2a754a93dfce9a2c690fc
+size 533

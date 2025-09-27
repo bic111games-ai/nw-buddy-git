@@ -1,14 +1,3 @@
-[
-	{
-		"Id": "FishingLoot",
-		"CountToNextLevel": 300,
-		"TimeframeSeconds": 18000,
-		"YellowDivertedLootModifier": 5,
-		"RedDivertedLootModifier": 10,
-		"YellowXpMultiplier": 0.5,
-		"RedXpMultiplier": 0.1,
-		"GreenNotificationLocTag": "@ui_fishing_divert_level_green",
-		"YellowNotificationLocTag": "@ui_fishing_divert_level_yellow",
-		"RedNotificationLocTag": "@ui_fishing_divert_level_red"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:1008dc1077c7a356f66844c5bc290ba620e730a5b1fa63e7cc2a7e6129f0123e
+size 410

@@ -1,33 +1,3 @@
-[
-	{
-		"TrackedStatID": "ConsumeT5Item",
-		"StatType": "Consume",
-		"ItemTier": 5
-	},
-	{
-		"TrackedStatID": "ConsumeT5Coating",
-		"StatType": "Consume",
-		"ItemTier": 5,
-		"ItemClass": "WeaponOil"
-	},
-	{
-		"TrackedStatID": "ConsumeT5TradeskillConsumable",
-		"StatType": "Consume",
-		"ItemTier": 5,
-		"ItemClass": "Consumable",
-		"TradingGroups": "CraftingConsumables"
-	},
-	{
-		"TrackedStatID": "ConsumeT5ResistanceConsumable",
-		"StatType": "Consume",
-		"ItemTier": 5,
-		"ItemClass": "Consumable",
-		"TradingGroups": "PotionElemDefense,PotionWellness,PotionPurifyB"
-	},
-	{
-		"TrackedStatID": "ConsumeMountBuff",
-		"StatType": "Consume",
-		"TargetID": "MountConsum_GruelT3,MountConsum_GruelT2,MountConsum_GruelT1,MountConsum_GruelT0",
-		"ItemTier": 0
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:4059dbe5052706915e66f2e7a08a9ef30b4431b591ea9bcc153b94a51f44697f
+size 786

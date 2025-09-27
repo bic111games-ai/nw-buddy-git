@@ -1,28 +1,3 @@
-[
-	{
-		"CollectibleId": "CollectibleTest_12",
-		"DisplayName": "@CollectibleTest_12",
-		"CategoricalId": "CollectibleTest",
-		"TerritoryId": 12
-	},
-	{
-		"CollectibleId": "Collectibles_Reekwater_Gem",
-		"CategoricalId": "Collectibles_Reekwater_Gem",
-		"TerritoryId": 0
-	},
-	{
-		"CollectibleId": "Collectibles_Reekwater_Chest",
-		"CategoricalId": "Collectibles_Reekwater_Chest",
-		"TerritoryId": 0
-	},
-	{
-		"CollectibleId": "Collectibles_Dunwood_Gem",
-		"CategoricalId": "Collectibles_Dunwood_Gem",
-		"TerritoryId": 0
-	},
-	{
-		"CollectibleId": "Collectibles_Dunwood_Memories",
-		"CategoricalId": "Collectibles_Dunwood_Memories",
-		"TerritoryId": 0
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:bab3e318c206c734167dd182bc2e2d68ff96bfa5ec482654203d423199cf9fb0
+size 677

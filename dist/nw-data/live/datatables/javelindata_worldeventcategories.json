@@ -1,31 +1,3 @@
-[
-	{
-		"CategoryId": "Test1",
-		"Description": "Testing category 1",
-		"Notes": "A description is mandatory. Don't remove this row"
-	},
-	{
-		"CategoryId": "Test2",
-		"Description": "Testing category 2"
-	},
-	{
-		"CategoryId": "Test3",
-		"Description": "Testing category 3"
-	},
-	{
-		"CategoryId": "Siege",
-		"Description": "Siege"
-	},
-	{
-		"CategoryId": "InfluenceRace",
-		"Description": "Influence Race"
-	},
-	{
-		"CategoryId": "WorldBoss",
-		"Description": "Global World boss"
-	},
-	{
-		"CategoryId": "DarknessEvent",
-		"Description": "Darkness encounters"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:fbc2e214ea501a183dc93535fc4e6366aed35b5b058a503eacccd6212600ee5e
+size 589

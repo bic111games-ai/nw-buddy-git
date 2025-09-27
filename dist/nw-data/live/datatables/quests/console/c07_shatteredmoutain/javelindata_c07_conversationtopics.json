@@ -1,24 +1,3 @@
-[
-	{
-		"ConversationTopicId": "0725_Prospector_talk",
-		"PlayerPrompt": "@0725_Prospector_talk_Prompt",
-		"NPCResponse": "@0725_Prospector_talk_Response"
-	},
-	{
-		"ConversationTopicId": "0724_Fisher_ExplainHotspots",
-		"PlayerPrompt": "@0223_Fisher_ExplainHotspots_Prompt",
-		"NPCResponse": "@0223_Fisher_ExplainHotspots_Response"
-	},
-	{
-		"ConversationTopicId": "Heretic_Topic1",
-		"PlayerPrompt": "@Heretic_Topic1_Prompt",
-		"NPCResponse": "@Heretic_Topic1_Response",
-		"RequiredAchievement": "07_Quest_Isabella_04"
-	},
-	{
-		"ConversationTopicId": "FatherRusso_Topic1",
-		"PlayerPrompt": "@FatherRusso_Topic1_Prompt",
-		"NPCResponse": "@FatherRusso_Topic1_Response",
-		"RequiredAchievement": "07_Quest_Isabella_05"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:a7ebb7757eb8a469a6a85c49f5a29c1cbfaa35a79386be8d352d21ea3b1482e8
+size 744

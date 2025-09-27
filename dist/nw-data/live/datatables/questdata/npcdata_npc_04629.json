@@ -1,10 +1,3 @@
-[
-	{
-		"NPCId": "NPC_04629",
-		"GenericName": "@NPC_04629_name",
-		"Title": "@NPC_04629_title",
-		"ConversationStateId1": "NPC_04629_State_0",
-		"ConversationStateId2": "NPC_04629_State_1",
-		"ConversationStateId3": "NPC_04629_State_2"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:7b5350337ee539f4f4aeb5d3e3deec7ca7d93c66099c914884057d30f1ecb2da
+size 249

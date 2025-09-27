@@ -1,7 +1,3 @@
-[
-	{
-		"ConversationTopicId": "0223a_Fisher_ExplainHotspots",
-		"PlayerPrompt": "@0223a_Fisher_ExplainHotspots_Prompt",
-		"NPCResponse": "@0223a_Fisher_ExplainHotspots_Response"
-	}
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:7a44612a93e7fd485d194c5ed4cbee65c6d22193e3eb0357ffbc611966ef471d
+size 188
