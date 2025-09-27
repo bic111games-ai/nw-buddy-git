@@ -22,20 +22,13 @@ Thumbs.db
 !/.vscode/launch.json
 !/.vscode/extensions.json
 
-### Cache narzędzi (Tooling Cache) ###
-# Pliki tymczasowe generowane przez narzędzia do budowania projektu.
-.angular/
-.nx/
-.sass-cache/
 
 #### reszta do usunięcia###
 
 /dist
-/out-tsc
-/coverage
-/release
-*.js.map
-!/src/karma.conf.js # Wyjątek dla pliku konfiguracyjnego testów
+
+
+
 
 
 
