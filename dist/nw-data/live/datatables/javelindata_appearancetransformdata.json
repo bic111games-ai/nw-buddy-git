@@ -1,0 +1,16 @@
+[
+	{
+		"oldAppearanceId": "m_graverobberlight_gloves",
+		"newAppearanceId": "m_graverobberlight_hands",
+		"oldAppearanceName": "graverobberlight_gloves_TransmogName",
+		"newAppearanceName": "graverobberlight_hands_TransmogName",
+		"gender": "male"
+	},
+	{
+		"oldAppearanceId": "f_graverobberlight_gloves",
+		"newAppearanceId": "f_graverobberlight_hands",
+		"oldAppearanceName": "graverobberlight_gloves_TransmogName",
+		"newAppearanceName": "graverobberlight_hands_TransmogName",
+		"gender": "female"
+	}
+]

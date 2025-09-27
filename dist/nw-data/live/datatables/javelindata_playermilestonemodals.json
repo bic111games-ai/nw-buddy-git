@@ -1,0 +1,7 @@
+[
+	{
+		"PlayerMilestoneModalId": "CutlassKeysRetraction",
+		"ModalScreenState": "CutlassKeysRetraction",
+		"ModalMilestoneConditional": "10_CutlassKeysUnlock_Modal"
+	}
+]

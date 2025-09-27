@@ -1,0 +1,28 @@
+[
+	{
+		"EventID": "7504_0101_devworldbluekillwolfquest_success",
+		"Level": 1,
+		"CreatureType": "Quest",
+		"UniversalExpAmount": 40,
+		"CurrencyReward": 1897,
+		"ItemReward": "QuestRewardArmorT2",
+		"GearScoreRange": 0,
+		"TerritoryStanding": 600,
+		"AzothReward": 0,
+		"AzothRewardChance": 1,
+		"EmitTelemetry": true
+	},
+	{
+		"EventID": "7505_0101_devworldbluegetcavelootquest_success",
+		"Level": 1,
+		"CreatureType": "Quest",
+		"UniversalExpAmount": 40,
+		"CurrencyReward": 1897,
+		"ItemReward": "2hWarhammerDropT2",
+		"GearScoreRange": 100,
+		"TerritoryStanding": 600,
+		"AzothReward": 0,
+		"AzothRewardChance": 1,
+		"EmitTelemetry": true
+	}
+]

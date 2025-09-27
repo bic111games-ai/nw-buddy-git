@@ -1,0 +1,128 @@
+[
+	{
+		"TrackedStatID": "GatherResource",
+		"StatType": "Gather",
+		"Level": 0,
+		"ItemType": "Resource",
+		"PerUse": false,
+		"Tradeskills": "Skinning,Mining,Logging,Harvesting"
+	},
+	{
+		"TrackedStatID": "GatherT5ResourceNode",
+		"StatType": "Gather",
+		"Level": 5,
+		"PerUse": true,
+		"Tradeskills": "Skinning,Mining,Logging,Harvesting"
+	},
+	{
+		"TrackedStatID": "SkinT5Animal",
+		"StatType": "Gather",
+		"Level": 5,
+		"ItemClass": "Rawhide+Resource",
+		"PerUse": true,
+		"Tradeskills": "Skinning"
+	},
+	{
+		"TrackedStatID": "LootSulfurChest",
+		"StatType": "Gather",
+		"Level": 0,
+		"PerUse": true,
+		"GatherableIds": "LootLargeT3ElitePOI_SulfurChestOnly"
+	},
+	{
+		"TrackedStatID": "LootEliteChest",
+		"StatType": "Gather",
+		"Level": 0,
+		"PerUse": true,
+		"GatherableIds": "LootLargeT3ElitePOI,LootLargeT3ElitePOI_SulfurChestOnly,LootLargeT3ElitePOI_BeastChestOnly"
+	},
+	{
+		"TrackedStatID": "GatherPrismabloom",
+		"StatType": "Gather",
+		"Level": 0,
+		"ItemType": "Resource",
+		"PerUse": true,
+		"GatherableIds": "DyePlantDesertRose"
+	},
+	{
+		"TrackedStatID": "GatherSporePods",
+		"StatType": "Gather",
+		"Level": 0,
+		"PerUse": true,
+		"GatherableIds": "FL_SporePod_AngryEarth,FL_SporePod_AngryEarth_Elite,FL_SporePod_Ancients,FL_SporePod_Beasts,FL_SporePod_Beasts_Elite"
+	},
+	{
+		"TrackedStatID": "LootBeastChest",
+		"StatType": "Gather",
+		"Level": 0,
+		"PerUse": true,
+		"GatherableIds": "LootLargeT3ElitePOI_BeastChestOnly"
+	},
+	{
+		"TrackedStatID": "GatherT52ResourceNode",
+		"StatType": "Gather",
+		"TargetID": "OreT52,WoodT52,FiberT52,RawhideT52",
+		"Level": 5,
+		"ItemType": "Resource",
+		"PerUse": true,
+		"Tradeskills": "Skinning,Mining,Logging,Harvesting"
+	},
+	{
+		"TrackedStatID": "GatherCKPvPChest",
+		"StatType": "Gather",
+		"Level": 0,
+		"PerUse": true,
+		"GatherableIds": "10ws_DoubloonChestPvP_Small,10ws_DoubloonChestPvP_Medium,10ws_DoubloonChestPvP_Large"
+	},
+	{
+		"TrackedStatID": "GatherCKPvPDoubloon",
+		"StatType": "Gather",
+		"TargetID": "CK_PVPResource_DoubloonToken",
+		"Level": 0,
+		"PerUse": false
+	},
+	{
+		"TrackedStatID": "GatherCKPvPBuriedTreasure",
+		"StatType": "Gather",
+		"TargetID": "CK_PVEResource_DoubloonToken",
+		"Level": 0,
+		"PerUse": true,
+		"GatherableIds": "LootLargeT3ElitePOI_CutlassTreasure"
+	},
+	{
+		"TrackedStatID": "GatherOre",
+		"StatType": "Gather",
+		"Level": 0,
+		"ItemType": "Resource",
+		"ItemClass": "Resource+Ore",
+		"PerUse": false,
+		"Tradeskills": "Mining"
+	},
+	{
+		"TrackedStatID": "GatherOreT4",
+		"StatType": "Gather",
+		"Level": 4,
+		"ItemType": "Resource",
+		"ItemClass": "Resource+Ore",
+		"PerUse": false,
+		"Tradeskills": "Mining"
+	},
+	{
+		"TrackedStatID": "GatherOreT5",
+		"StatType": "Gather",
+		"Level": 5,
+		"ItemType": "Resource",
+		"ItemClass": "Resource+Ore",
+		"PerUse": false,
+		"Tradeskills": "Mining"
+	},
+	{
+		"TrackedStatID": "GatherT52Ore",
+		"StatType": "Gather",
+		"TargetID": "OreT52",
+		"Level": 5,
+		"ItemType": "Resource",
+		"PerUse": false,
+		"Tradeskills": "Mining"
+	}
+]
