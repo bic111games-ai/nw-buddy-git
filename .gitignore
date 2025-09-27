@@ -1,126 +1,43 @@
+# -----------------------------------------------------------------------------
+# AUTOMATYCZNIE WYGENEROWANY PRZEZ GEMINI - ZOPTYMALIZOWANY NA PODSTAWIE WPISÓW UŻYTKOWNIKA
+# -----------------------------------------------------------------------------
+
 # Wyniki budowania
+###################
 /out-tsc/
 
 # Wrażliwe dane
+###############
 .env
 gha-creds-*.json
 
 # Pliki systemowe
+#################
 .DS_Store
 Thumbs.db
 
-# Ustawienia specyficzne dla Twojego edytora, które nie powinny być częścią projektu.
+# Ustawienia specyficzne dla edytora (np. IDE/VS Code)
+######################################################
+# Ignorowanie całych folderów z ustawieniami
 .idea/
 .project/
 .settings/
 .vscode/
+
 # Wyjątki: pozwalamy na dzielenie się konfiguracją zadań i debugowania z zespołem
 !/.vscode/tasks.json
 !/.vscode/launch.json
 !/.vscode/extensions.json
 
 ### Cache narzędzi (Tooling Cache) ###
+######################################
 # Pliki tymczasowe generowane przez narzędzia do budowania projektu.
 .angular/
 .nx/
 .sass-cache/
 
-#### reszta do usunięcia###
-
-
+# Zależności projektu (np. Node.js - całe node_modules)
+#######################################################
+# Zastępuje długą listę pojedynczych wpisów w folderze node_modules jednym wpisem.
+# Git ignoruje całą zawartość, jeśli sam folder jest ignorowany.
 /node_modules/
-/node_modules/comlink/
-/node_modules/commander/
-/node_modules/compression/
-/node_modules/concurrently/
-/node_modules/crc-32/
-/node_modules/crypto/
-/node_modules/crypto-browserify/
-/node_modules/daisyui/
-/node_modules/date-fns/
-/node_modules/decode-tiff/
-/node_modules/dexie/
-/node_modules/dexie-export-import/
-/node_modules/dice-coefficient/
-/node_modules/autoprefixer/
-/node_modules/better-sqlite3/
-/node_modules/browserify-fs/
-/node_modules/chart.js/
-/node_modules/chromatic/
-/node_modules/ag-grid-community/
-/node_modules/dotenv/
-/node_modules/electron/
-/node_modules/electron-builder/
-/node_modules/electron-rebuild/
-/node_modules/electron-reload/
-/node_modules/env-cmd/
-/node_modules/esbuild-plugin-alias/
-/node_modules/eslint-scope/
-/node_modules/express/
-/node_modules/express-lru-cache/
-/node_modules/file-saver/
-/node_modules/html-to-image/
-/node_modules/http-server/
-/node_modules/jasmine-auto-spies/
-/node_modules/jasmine-core/
-/node_modules/jasmine-spec-reporter/
-/node_modules/jimp/
-/node_modules/js-crc/
-/node_modules/jszip/
-/node_modules/karma/
-/node_modules/karma-chrome-launcher/
-/node_modules/karma-coverage-istanbul-reporter/
-/node_modules/karma-electron/
-/node_modules/karma-jasmine/
-/node_modules/karma-jasmine-html-reporter/
-/node_modules/karma-mocha-reporter/
-/node_modules/lil-gui/
-/node_modules/lodash/
-/node_modules/lru-cache/
-/node_modules/lz-string/
-/node_modules/maplibre-gl/
-/node_modules/mdast-util-from-markdown/
-/node_modules/micromatch/
-/node_modules/mithril/
-/node_modules/monaco-editor/
-/node_modules/n8ao/
-/node_modules/nanoid/
-/node_modules/npm-run-all/
-/node_modules/octokit/
-/node_modules/papaparse/
-/node_modules/path-browserify/
-/node_modules/pocketbase/
-/node_modules/postcss/
-/node_modules/postprocessing/
-/node_modules/p-queue/
-/node_modules/prettier/
-/node_modules/react/
-/node_modules/react-dom/
-/node_modules/resize-observer-polyfill/
-/node_modules/rimraf/
-/node_modules/rxjs/
-/node_modules/sharp/
-/node_modules/sql.js/
-/node_modules/storybook/
-/node_modules/stream-browserify/
-/node_modules/swiper/
-/node_modules/tailwindcss/
-/node_modules/tailwind-merge/
-/node_modules/tesseract.js/
-/node_modules/three/
-/node_modules/tinycolor2/
-/node_modules/tslib/
-/node_modules/ts-node/
-/node_modules/typescript/
-/node_modules/vite/
-/node_modules/vitest/
-/node_modules/w3name/
-/node_modules/wait-on/
-/node_modules/web3.storage/
-/node_modules/webdriver-manager/
-/node_modules/webpack/
-/node_modules/wrangler/
-/node_modules/yaml/
-/node_modules/yauzl/
-/node_modules/zod/
-/node_modules/zone.js/
