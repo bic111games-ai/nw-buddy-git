@@ -30,7 +30,6 @@ Thumbs.db
 
 #### reszta do usunięcia###
 
-/dist/data
 /dist/electron
 /dist/nw-data/.current
 /dist/nw-data/live.zip
