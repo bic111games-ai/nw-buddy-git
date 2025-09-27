@@ -1,0 +1,72 @@
+<ng-container *ngIf="vm$ | async; let vm">
+  <ion-header>
+    <ion-toolbar class="ion-color ion-color-black rounded-t-md">
+      <ion-title>
+        <nwb-icon
+          class="w-4 h-4 mr-4"
+          [icon]="vm.active ? iconSpinner : iconImport"
+          [class.text-primary]="vm.active"
+          [class.animate-spin]="vm.active"
+        />
+        Import data
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-p-4 prose">
+    <div
+      *ngIf="!vm.complete"
+      class="border rounded-md border-dashed h-full flex flex-col items-center justify-center gap-1"
+      [class.border-primary]="!vm.file"
+      [class.border-transparent]="!!vm.file"
+    >
+      <ng-container *ngIf="vm.file; let file">
+        <span>{{ file.name }}</span>
+        <span>Modified at: {{ file.lastModified | date }}</span>
+        <span>Size: {{ file.size / 1024 / 1024 | number }} MiB</span>
+      </ng-container>
+
+      <ng-container *ngIf="!vm.file">
+        <span>Drag & Drop to import file</span>
+        <span>OR</span>
+        <button class="btn btn-primary" (click)="pickFile()">Browse File</button>
+      </ng-container>
+    </div>
+
+    <ng-container *ngIf="vm.complete && vm.error">
+      <div class="alert alert-error">
+        <nwb-icon [icon]="iconError" class="w-6 h-6" />
+        <div class="w-full">
+          <div class="text-xs">Something went wrong.</div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="vm.complete && !vm.error">
+      <div class="alert alert-success">
+        <nwb-icon [icon]="iconSuccess" class="w-6 h-6" />
+        <div class="w-full">
+          <div class="text-xs">Import complete.</div>
+        </div>
+      </div>
+    </ng-container>
+  </ion-content>
+
+  <ion-footer class="rounded-b-md">
+    <ion-toolbar class="ion-color ion-color-base-300">
+      <div slot="end" class="join px-1 w-full sm:w-auto">
+        <button class="join-item btn btn-ghost" (click)="close()">Close</button>
+        @if (!vm.complete) {
+          <button
+            class="join-item btn btn-ghost text-primary"
+            [class.loading]="vm.active"
+            (click)="import()"
+            [disabled]="vm.active || !vm.file"
+          >
+            Import
+          </button>
+        }
+      </div>
+    </ion-toolbar>
+  </ion-footer>
+</ng-container>

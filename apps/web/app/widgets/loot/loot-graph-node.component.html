@@ -1,0 +1,292 @@
+<ng-container *ngTemplateOutlet="expandable ? tplHead : tplChildren" />
+
+@if (itemId) {
+  <nwb-item-detail
+    [itemId]="itemId"
+    class="max-w-md rounded-md overflow-clip border-2"
+    [class.border-transparent]="!highlight"
+    [class.border-accent]="highlight"
+    #detail="detail"
+  >
+    <nwb-item-detail-header class="h-full" [size]="'sm'" [enableLink]="true" [enableInfoLink]="true">
+      <div class="flex-none flex flex-row gap-1 p-1 bg-black/40 w-full overflow-auto scrollbar-hide">
+        @if (condition) {
+          <nwb-loot-tag [checked]="condition.checked" [tooltip]="condition.tooltip">
+            {{ condition.label }}
+          </nwb-loot-tag>
+        }
+        <ng-container *ngTemplateOutlet="tplRollChanceBadge" />
+
+        @if (itemQuantity) {
+          <span class="whitespace-nowrap badge badge-sm badge-primary text-shadow-none" [tooltip]="'Quantity'">
+            {{ itemQuantity }} &times;
+          </span>
+        }
+        @if (odds) {
+          <span class="badge badge-sm text-shadow-none whitespace-nowrap px-1" [tooltip]="'Odds'">
+            🎲{{ odds | percent }}
+          </span>
+        }
+        @if (matchOne) {
+          <span
+            class="whitespace-nowrap badge badge-sm cursor-help badge-info"
+            [tooltip]="'Must match only one of the given tags if any are present.'"
+          >
+            MatchOne
+          </span>
+        }
+        @for (item of tags; track $index) {
+          <nwb-loot-tag
+            [tag]="item.tag"
+            [tagValue]="item.value"
+            [checked]="item.checked"
+            [actions]="item.editable"
+            (addClicked)="service.addTagClicked.emit($event)"
+            (removeClicked)="service.removeTagClicked.emit($event)"
+          />
+        }
+      </div>
+    </nwb-item-detail-header>
+  </nwb-item-detail>
+}
+
+<ng-template #tplHead>
+  <div class="border border-base-100 rounded-l-md overflow-clip bg-black">
+    <div
+      class="px-2 py-1 flex flex-row items-center gap-x-1 bg-base-100 hover:bg-base-200 transition-colors cursor-pointer shadow-accent border-l-4"
+      [class.border-l-transparent]="!highlight"
+      [class.border-l-accent]="highlight"
+      (click)="toggle()"
+    >
+      <div class="flex flex-row flex-wrap items-center gap-x-1 text-shadow-sm shadow-black">
+        @if (typeName === 'bucket') {
+          <nwb-icon
+            [icon]="iconBucket"
+            class="w-4 h-4 mr-1 cursor-help opacity-75"
+            [tooltip]="'This is a loot bucket'"
+          />
+        } @else if (!showLink) {
+          <nwb-icon [icon]="iconTable" class="w-4 h-4 mr-1 cursor-help opacity-75" [tooltip]="'This is a loot table'" />
+        } @else {
+          <a
+            class="btn btn-sm btn-square btn-ghost -ml-2"
+            [routerLink]="link"
+            [tooltip]="showLink ? 'Go to loot table' : ''"
+          >
+            <nwb-icon [icon]="linkIcon" class="w-4 h-4" />
+          </a>
+        }
+        @if (!showLink) {
+          <ng-container *ngTemplateOutlet="tplRollChanceBadge" />
+        }
+
+        @if (condition) {
+          <nwb-loot-tag [checked]="condition.checked"> ≥ {{ condition.value }} </nwb-loot-tag>
+        }
+        @if (itemQuantity && itemQuantity != '1') {
+          <span class="whitespace-nowrap"> {{ itemQuantity }} &times; </span>
+        }
+        <span class="flex-1 overflow-hidden whitespace-nowrap inline-flex items-center font-mono text-sm">
+          {{ displayName }}
+        </span>
+      </div>
+      <span class="flex-1"></span>
+
+      <span class="cursor-help text-xs" [tooltip]="tplTip">
+        @if (showUnlockToggle) {
+          <span [class.text-error]="!itemCountUnlocked" [class.text-success]="!!itemCountUnlocked">
+            {{ itemCountUnlocked }}
+          </span>
+          <span> / </span>
+        }
+        <span> {{ itemCountTotal }} </span>
+        <ng-template #tplTip>
+          <div class="p-2">
+            @if (showUnlockToggle) {
+              <span [class.text-error]="!itemCountUnlocked" [class.text-success]="!!itemCountUnlocked">
+                {{ itemCountUnlocked }}
+              </span>
+              of
+              <span>{{ itemCountTotal }} </span>
+              items unlocked
+            } @else {
+              This table has a total of <span class="text-accent">{{ itemCountTotal }} </span> (including sub tables)
+            }
+          </div>
+        </ng-template>
+      </span>
+      <div class="join">
+        @if (showUnlockToggle) {
+          <button
+            class="join-item btn btn-sm btn-square btn-ghost"
+            (click)="toggleLockedClicked($event)"
+            [tooltip]="showLocked ? 'Hide locked items' : 'Show locked items'"
+          >
+            <nwb-icon [icon]="showLocked ? iconEye : iconEyeSlash" class="w-4 h-4" />
+          </button>
+        }
+        @if (showHighlightPicker) {
+          <button
+            class="join-item btn btn-sm btn-square btn-ghost"
+            (click)="highlightPickerClicked($event)"
+            [tooltip]="'Find item' + (service.highlight ? ' or clear filter' : '')"
+            [class.text-accent]="service.highlight"
+          >
+            <nwb-icon [icon]="iconFilter" class="w-4 h-4" />
+          </button>
+        }
+      </div>
+    </div>
+    @if (expand) {
+      <div animate.enter="fade-grow-y-in" animate.leave="fade-grow-y-out">
+        <div class="p-3 pr-0 mr-[-1px] flex flex-col gap-2">
+          @if (table) {
+            <div class="flex flex-row flex-wrap gap-1 text-shadow-sm shadow-black">
+              @if (table['AND/OR']; as tagValue) {
+                <span class="whitespace-nowrap badge badge-sm badge-info">
+                  {{ tagValue }}
+                </span>
+              }
+              @if (table.MaxRoll; as tagValue) {
+                <span class="whitespace-nowrap badge badge-sm badge-primary text-shadow-none">
+                  MaxRoll: {{ tagValue | number }}
+                </span>
+              }
+              @if (table.RollBonusSetting; as tagValue) {
+                <span class="whitespace-nowrap badge badge-sm badge-accent">
+                  {{ tagValue }}
+                </span>
+              }
+              @for (item of conditions; track $index) {
+                <nwb-loot-tag
+                  [tag]="item.tag"
+                  [checked]="item.checked"
+                  [actions]="item.editable"
+                  (addClicked)="service.addTagClicked.emit($event)"
+                  (removeClicked)="service.removeTagClicked.emit($event)"
+                />
+              }
+              @if (isTrue(table.ConditionOverridesRoll)) {
+                <span
+                  class="whitespace-nowrap badge badge-sm badge-secondary cursor-help opacity-50"
+                  [tooltip]="'Condition Overrides Roll'"
+                >
+                  COR
+                </span>
+              }
+              @if (isTrue(table.LootBiasingEnabled)) {
+                <span
+                  class="whitespace-nowrap badge badge-sm badge-accent cursor-help"
+                  [tooltip]="'Loot Biasing Enabled'"
+                >
+                  Bias
+                </span>
+              }
+              @if (table.LootBiasingChanceOverride; as tagValue) {
+                <span
+                  class="whitespace-nowrap badge badge-sm badge-accent cursor-help"
+                  [tooltip]="'Loot Biasing Chance Override'"
+                >
+                  Bias CO: {{ tagValue }}
+                </span>
+              }
+              @if (table.GSBonus; as tagValue) {
+                <span class="whitespace-nowrap badge badge-sm badge-outline opacity-50"> GSBonus: {{ tagValue }} </span>
+              }
+              @if (isTrue(table.UseLevelGS)) {
+                <span class="whitespace-nowrap badge badge-sm badge-outline opacity-50"> UseLvelGS </span>
+              }
+              @if (isTrue(table.TriggerLimitOnVisit)) {
+                <span class="whitespace-nowrap badge badge-sm badge-outline opacity-50"> Trigger Limit </span>
+              }
+              @if (table.PerkBucketOverrides2) {
+                <span
+                  class="whitespace-nowrap badge badge-sm badge-outline opacity-50 cursor-help"
+                  [tooltip]="'Perk Bucket Override'"
+                >
+                  PBO
+                </span>
+              }
+
+              <span class="flex-1"></span>
+              @if (store.tableProps(); as tableProps) {
+                <nwb-diff-button [record]="tableProps" [idKey]="'LootTableID'" class="mr-1 btn-info" />
+              }
+            </div>
+          }
+          <ng-container *ngTemplateOutlet="tplChildren" />
+        </div>
+      </div>
+    }
+  </div>
+</ng-template>
+
+<ng-template #tplChildren>
+  @if (children?.isOnlyItems) {
+    @if (children.count > 8) {
+      <nwb-virtual-grid [data]="children.items" [options]="children.gridOptions" class="min-h-[380px] -m-2" />
+    } @else {
+      <div class="grid grid-cols-fill-xs gap-2 mr-3">
+        @for (node of children.items; track node.trackId) {
+          <nwb-loot-graph-node [node]="node" [showHighlightOnly]="showHighlightOnly" />
+        }
+      </div>
+    }
+  } @else if (children) {
+    <div class="flex flex-col gap-2">
+      @for (node of children.items; track node.trackId) {
+        <nwb-loot-graph-node [node]="node" [showHighlightOnly]="showHighlightOnly" />
+      }
+    </div>
+  }
+</ng-template>
+
+<ng-template #tplRollChanceBadge>
+  @if (chanceRel || rollThreshold) {
+    <span
+      class="whitespace-nowrap badge badge-sm cursor-help"
+      [class.badge-primary]="!showChance || chanceRel > 0"
+      [class.text-shadow-none]="!showChance || chanceRel > 0"
+      [class.badge-error]="showChance && !(chanceRel > 0)"
+      [tooltip]="showChance ? tplChanceTip : null"
+    >
+      @if (rollThreshold) {
+        ≥ {{ rollThreshold }}
+      }
+      @if (chanceRel && rollThreshold) {
+        ⇒
+      }
+      @if (chanceRel) {
+        {{ chanceRel | percent: '0.0-3' }}
+      }
+      @if (luckNeeded) {
+        <nwb-icon [icon]="iconLuck" class="ml-1 -mr-1 w-[14px] h-[14px]" />
+      }
+    </span>
+  }
+</ng-template>
+
+<ng-template #tplChanceTip>
+  <table class="table table-sm p-1">
+    <tr>
+      <th>Chance to hit this entry</th>
+      <td class="text-right font-mono text-accent">{{ chanceRel | percent: '0.5-5' }}</td>
+    </tr>
+    <tr>
+      <th>Cumulative chance</th>
+      <td class="text-right font-mono text-accent">{{ chanceAbs | percent: '0.5-5' }}</td>
+    </tr>
+    @if (odds) {
+      <tr>
+        <th>Cumulative with odds</th>
+        <td class="text-right font-mono text-accent">{{ chanceAbs * odds | percent: '0.5-5' }}</td>
+      </tr>
+    }
+    @if (luckNeeded) {
+      <tr>
+        <th>Needed luck</th>
+        <td class="text-right font-mono text-accent">> {{ luckNeeded | number }}</td>
+      </tr>
+    }
+  </table>
+</ng-template>

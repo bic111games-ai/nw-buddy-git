@@ -1,0 +1,14 @@
+@if (showProps()) {
+  <nwb-property-grid
+    class="w-full gap-x-2 font-mono leading-tight overflow-auto"
+    [item]="props()"
+    [descriptor]="descriptor"
+  />
+}
+@if (showRewards() && rewards()?.length) {
+  <div>
+    <h3>Rewards</h3>
+    <nwb-game-event-detail-rewards [rewards]="rewards()" />
+  </div>
+}
+<ng-content />

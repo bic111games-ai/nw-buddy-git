@@ -1,0 +1,24 @@
+@if ( parents()?.length) {
+  <h3>Parent Tables</h3>
+  <div class="flex flex-wrap gap-2 mb-4">
+    @for (parent of parents(); track $index) {
+      <a [routerLink]="['loot', parent.LootTableID] | nwLink" class="btn btn-xs btn-secondary normal-case">
+        {{ parent.LootTableID | nwHumanize }}
+      </a>
+    }
+  </div>
+}
+<nwb-loot-context-editor #editor class="mb-4" />
+<nwb-loot-graph
+  [tableId]="id$ | async"
+  [tags]="editor.contextTags | async"
+  [tagValues]="editor.contextTagValues | async"
+  [(showLocked)]="showLocked"
+  [showLink]="true"
+  [showChance]="true"
+  [tagsEditable]="true"
+  [showHighlightPicker]="true"
+  (addTagClicked)="editor.addTag($event)"
+  (removeTagClicked)="editor.removeTag($event)"
+  class="overflow-hidden"
+/>

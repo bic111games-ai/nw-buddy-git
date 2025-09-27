@@ -1,0 +1,392 @@
+<div class="grid grid-cols-fill-xs gap-x-2 gap-y-1">
+  <div class="join bg-base-200 rounded-md">
+    <button
+      class="join-item btn btn-sm btn-ghost flex-1 justify-start flex-nowrap truncate"
+      [class.justify-start]="!!territoryId"
+      [class.italic]="!territoryId"
+      (click)="pickTerritory()"
+    >
+      @if (territoryId) {
+        @if (territoryIcon; as icon) {
+          <img [src]="icon" class="w-6 h-6" />
+        }
+        {{ territoryName | nwText }}
+      } @else {
+        - Territory -
+      }
+    </button>
+
+    <button class="join-item btn btn-sm btn-ghost btn-square" [tooltip]="territoryTip" [preventClick]="true">
+      <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+    </button>
+    <ng-template #territoryTip>
+      <div class="p-2 prose prose-sm leading-tight w-80">
+        <h4>Territory</h4>
+        <p>When selecting a territory, the Content Level is updated and loot tags are added to the context.</p>
+        @if (territoryTags?.length) {
+          <p>
+            Added Tags:
+            @for (tag of territoryTags; track $index) {
+              <span class="badge badge-sm badge-secondary mx-1">{{ tag }}</span>
+            }
+          </p>
+        }
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="join bg-base-200 rounded-md">
+    <button
+      class="join-item btn btn-sm btn-ghost flex-1 text-left justify-start"
+      [cdkMenuTriggerFor]="contentLevelSlider"
+    >
+      Content Level
+    </button>
+    <input
+      type="number"
+      class="join-item input border-0 input-sm w-20 appearance-none text-right"
+      [(ngModel)]="contLevel"
+      [min]="contentLevelMin"
+      [max]="contentLevelMax"
+      (wheel)="($event)"
+    />
+    <button class="join-item btn btn-sm btn-ghost btn-square" [tooltip]="contentLevelTip" [preventClick]="true">
+      <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+    </button>
+    <ng-template #contentLevelTip>
+      <div class="p-2 prose prose-sm leading-tight w-80">
+        <h4>Minimum Content Level</h4>
+        <p>Accounts for <span class="badge badge-secondary badge-sm">MinContLevel</span> tags.</p>
+        <p>
+          Values in tag conditions are zero-based. E.g.
+          <span class="badge badge-secondary badge-sm">MinContLevel: 19</span> will match level 20 and above.
+        </p>
+      </div>
+    </ng-template>
+    <ng-template #contentLevelSlider>
+      <div class="bg-base-200 border border-base-100 rounded-lg p-4 w-80" cdkMenu>
+        <nwb-input-slider
+          class="w-full"
+          [size]="'xs'"
+          [min]="contentLevelMin"
+          [max]="contentLevelMax"
+          [step]="1"
+          [bars]="true"
+          [barsStep]="10"
+          [values]="true"
+          [(ngModel)]="contLevel"
+        />
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="join bg-base-200 rounded-md">
+    <button
+      class="join-item btn btn-sm btn-ghost flex-1 flex-nowrap truncate"
+      [class.justify-start]="!!poiId"
+      [class.italic]="!poiId"
+      (click)="pickPoi()"
+    >
+      @if (poiId) {
+        @if (poiIcon; as icon) {
+          <img [src]="icon" class="w-6 h-6" />
+        }
+        {{ poiName | nwText }}
+      } @else {
+        - Point Of Interest -
+      }
+    </button>
+
+    <button class="join-item btn btn-sm btn-ghost btn-square" [tooltip]="poiTip" [preventClick]="true">
+      <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+    </button>
+    <ng-template #poiTip>
+      <div class="p-2 prose prose-sm leading-tight w-80">
+        <h4>Point Of Interest</h4>
+        <p>When selecting a POI, its loot tags are added to the context</p>
+        <p>This will NOT updated the POI level.</p>
+        @if (poiTags?.length) {
+          <p>
+            Added Tags:
+            @for (tag of poiTags; track $index) {
+              <span class="badge badge-sm badge-secondary mx-1">{{ tag }}</span>
+            }
+          </p>
+        }
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="join bg-base-200 rounded-md">
+    <button class="join-item btn btn-sm btn-ghost flex-1 text-left justify-start" [cdkMenuTriggerFor]="poiLevelSlider">
+      POI Level
+    </button>
+    <input
+      type="number"
+      class="join-item input border-0 input-sm w-20 max-w-xs appearance-none text-right"
+      [(ngModel)]="poiLevel"
+      [min]="poiLevelMin"
+      [max]="poiLevelMax"
+      (wheel)="($event)"
+    />
+    <button class="join-item btn btn-sm btn-ghost btn-square" [tooltip]="poiLevelTip" [preventClick]="true">
+      <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+    </button>
+    <ng-template #poiLevelTip>
+      <div class="p-2 prose prose-sm leading-tight w-80">
+        <h4>Point Of Intereset Level</h4>
+        <p>Accounts for <span class="badge badge-secondary badge-sm">MinPOILevel</span> tags.</p>
+        <p>
+          Values in tag conditions are zero-based. E.g.
+          <span class="badge badge-secondary badge-sm">MinPOILevel: 19</span> will match level 20 and above.
+        </p>
+        <p class="text-nw-description italic">
+          It is currently not possible to resolve the POI level from selected POI. For convenience this value is updated
+          whenever the selected Crature is changed. Update this value manually. Read the level from ingame screen when
+          entering an area.
+        </p>
+      </div>
+    </ng-template>
+    <ng-template #poiLevelSlider>
+      <div class="bg-base-200 border border-base-100 rounded-lg p-4 w-80" cdkMenu>
+        <nwb-input-slider
+          class="w-full"
+          [size]="'xs'"
+          [min]="poiLevelMin"
+          [max]="poiLevelMax"
+          [step]="1"
+          [bars]="true"
+          [barsStep]="10"
+          [values]="true"
+          [(ngModel)]="poiLevel"
+        />
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="join bg-base-200 rounded-md">
+    <button
+      class="join-item btn btn-sm btn-ghost flex-1 justify-start"
+      [class.justify-start]="!!vitalId"
+      [class.italic]="!vitalId"
+      (click)="pickVital()"
+    >
+      @if (vitalId) {
+        @if (vitalIcon; as icon) {
+          <img [src]="icon" class="w-6 h-6" />
+        }
+        {{ vitalName | nwText }}
+      } @else {
+        Creature
+      }
+    </button>
+    <button class="join-item btn btn-sm btn-ghost btn-square" [tooltip]="creatureTip" [preventClick]="true">
+      <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+    </button>
+    <ng-template #creatureTip>
+      <div class="p-2 prose prose-sm leading-tight w-80">
+        <h4>Creature</h4>
+        <p>When selecting a creature, its loot tags are added to the context. Also, the POI level is updated.</p>
+        @if (vitalTags?.length) {
+          <p>
+            Added Tags:
+            @for (tag of vitalTags; track $index) {
+              <span class="badge badge-sm badge-secondary mx-1">{{ tag }}</span>
+            }
+          </p>
+        }
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="join bg-base-200 rounded-md">
+    <button
+      class="join-item btn btn-sm btn-ghost flex-1 text-left justify-start"
+      [cdkMenuTriggerFor]="enemyLevelSlider"
+    >
+      Enemy Level
+    </button>
+    <input
+      type="number"
+      class="join-item input border-0 input-sm w-20 appearance-none text-right"
+      [(ngModel)]="vitalLevel"
+      [min]="enemyLevelMin"
+      [max]="enemyLevelMax"
+      (wheel)="($event)"
+    />
+    <button class="join-item btn btn-sm btn-ghost btn-square" [tooltip]="enemyLevelTip" [preventClick]="true">
+      <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+    </button>
+    <ng-template #enemyLevelTip>
+      <div class="p-2 prose prose-sm leading-tight w-80">
+        <h4>Enemy level</h4>
+        <p>Accounts for <span class="badge badge-secondary badge-sm">EnemyLevel</span> tags.</p>
+        <p>
+          Values in tag conditions are zero-based. E.g.
+          <span class="badge badge-secondary badge-sm">EnemyLevel: 19</span> will match level 20 and above.
+        </p>
+      </div>
+    </ng-template>
+    <ng-template #enemyLevelSlider>
+      <div class="bg-base-200 border border-base-100 rounded-lg p-4 w-80" cdkMenu>
+        <nwb-input-slider
+          class="w-full"
+          [size]="'xs'"
+          [min]="enemyLevelMin"
+          [max]="enemyLevelMax"
+          [step]="1"
+          [bars]="true"
+          [barsStep]="10"
+          [values]="true"
+          [(ngModel)]="vitalLevel"
+        />
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="join bg-base-200 rounded-md">
+    <button
+      class="join-item btn btn-sm btn-ghost flex-1 text-left justify-start"
+      [cdkMenuTriggerFor]="playerLevelSlider"
+    >
+      Player Level
+    </button>
+    <input
+      type="number"
+      class="join-item input border-0 input-sm w-20 appearance-none text-right"
+      [(ngModel)]="playerLevel"
+      [min]="playerLevelMin"
+      [max]="playerLevelMax"
+      (wheel)="($event)"
+    />
+    <button class="join-item btn btn-sm btn-ghost btn-square" [tooltip]="playerLevelTip" [preventClick]="true">
+      <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+    </button>
+    <ng-template #playerLevelTip>
+      <div class="p-2 prose prose-sm leading-tight w-80">
+        <h4>Player level</h4>
+        <p>Accounts for <span class="badge badge-secondary badge-sm">Level</span> tags.</p>
+        <p>
+          Values in tag conditions are zero-based. E.g.
+          <span class="badge badge-secondary badge-sm">Level: 19</span> will match level 20 and above.
+        </p>
+      </div>
+    </ng-template>
+    <ng-template #playerLevelSlider>
+      <div class="bg-base-200 border border-base-100 rounded-lg p-4 w-80" cdkMenu>
+        <nwb-input-slider
+          class="w-full"
+          [size]="'xs'"
+          [min]="playerLevelMin"
+          [max]="playerLevelMax"
+          [step]="1"
+          [bars]="true"
+          [barsStep]="10"
+          [values]="true"
+          [(ngModel)]="playerLevel"
+        />
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="join bg-base-200 rounded-md">
+    <button
+      class="join-item btn btn-sm btn-ghost flex-1 justify-start flex-nowrap truncate"
+      [class.justify-start]="!!gameModeId"
+      [class.italic]="!gameModeId"
+      (click)="pickGameMode()"
+    >
+      @if (gameModeId) {
+        @if (gameModeIcon; as icon) {
+          <img [src]="icon" class="w-6 h-6" />
+        }
+        {{ gameModeName | nwText }}
+      } @else {
+        - Game Mode -
+      }
+    </button>
+
+    <button class="join-item btn btn-sm btn-ghost btn-square" [tooltip]="gmaeModeTip" [preventClick]="true">
+      <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+    </button>
+    <ng-template #gmaeModeTip>
+      <div class="p-2 prose prose-sm leading-tight w-80">
+        <h4>Game Mode</h4>
+        <p>
+          When selecting a game mode, its loot tags are added to the context. Tags are also added for the selected
+          difficulty and mutation.
+        </p>
+        @if (gameModeTags?.length) {
+          <p>
+            Added Tags:
+            @for (tag of gameModeTags; track $index) {
+              <span class="badge badge-sm badge-secondary mx-1">{{ tag }}</span>
+            }
+          </p>
+        }
+      </div>
+    </ng-template>
+  </div>
+
+  @if (gameModeIsMutable) {
+    <div class="join bg-base-200 rounded-md">
+      <button class="join-item btn btn-sm btn-ghost flex-1 text-left justify-start">Difficulty</button>
+      <select
+        type="number"
+        class="join-item input input-sm w-20 min-w-0 appearance-none"
+        [(ngModel)]="mutaDifficultyId"
+      >
+        <option [value]="null" class="italic">Normal</option>
+        @for (option of mutaDifficultyOptions(); track $index) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+      <button class="join-item btn btn-sm btn-ghost btn-square" [tooltip]="mutaDifficultyTip" [preventClick]="true">
+        <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+      </button>
+      <ng-template #mutaDifficultyTip>
+        <div class="p-2 prose prose-sm leading-tight w-80">
+          <h4>Mutation Difficulty</h4>
+          <p>When selecting a difficulty, its loot tags are added to the context.</p>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="join bg-base-200 rounded-md">
+      <button class="join-item btn btn-sm btn-ghost flex-1 text-left justify-start">Mutation</button>
+      <select
+        type="number"
+        class="join-item input input-sm w-20 min-w-0 appearance-none"
+        [(ngModel)]="mutaElementTypeId"
+      >
+        <option [value]="null" class="italic">- none -</option>
+        @for (option of mutaElementTypeOptions(); track $index) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+
+      <button class="join-item btn btn-sm btn-ghost btn-square" [tooltip]="mutaElementTip" [preventClick]="true">
+        <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+      </button>
+      <ng-template #mutaElementTip>
+        <div class="p-2 prose prose-sm leading-tight w-80">
+          <h4>Mutation Element</h4>
+          <p>When selecting a mutation, its loot tags are added to the context.</p>
+        </div>
+      </ng-template>
+    </div>
+  }
+</div>
+
+<div class="form-control w-full">
+  <label class="label">
+    <span class="label-text">Selected Tags</span>
+  </label>
+  <div class="flex flex-row flex-wrap gap-1 text-shadow-sm shadow-black">
+    @for (item of tags | async; track item.tag) {
+      <span animate.enter="fade-grow-x-in" animate.leave="fade-grow-x-out">
+        <nwb-loot-tag [tag]="item.tag" [checked]="true" [actions]="item.editable" (removeClicked)="removeTag(item.tag)" />
+      </span>
+    }
+  </div>
+</div>

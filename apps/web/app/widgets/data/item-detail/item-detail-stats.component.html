@@ -1,0 +1,26 @@
+@if (gsLabel(); as gs) {
+  <div
+    animate.enter="fade-grow-y-in"
+    animate.leave="fade-grow-y-out"
+    class="flex flex-row gap-1 rounded-md outline outline-2 outline-offset-0 outline-transparent transition-all leading-none relative"
+    [class.hover:outline-primary]="gsEditable()"
+    [class.hover:outline-offset-4]="gsEditable()"
+    [class.cursor-pointer]="gsEditable()"
+    [class.select-none]="gsEditable()"
+    (click)="onGearScoreEdit($event)"
+  >
+    <img [nwImage]="'assets/icons/item/icon_gearscore.png'" class="w-10 h-10 relative top-[2px]" />
+    <nwb-item-gs [value]="gs" cdkOverlayOrigin class="text-5xl" style="min-width: 3rem" />
+  </div>
+}
+@if (stats()?.length) {
+  @for (row of stats(); track $index) {
+    <div animate.enter="fade-grow-y-in" animate.leave="fade-grow-y-out">
+      <nwb-item-stat [label]="row.value">{{ row.label | nwText }}</nwb-item-stat>
+    </div>
+  }
+}
+@if (gsEditable()) {
+  <nwb-icon [icon]="editIcon" class="w-3 h-3 absolute top-4 -left-3 opacity-50 screenshot-hidden" />
+}
+<ng-content />

@@ -1,0 +1,21 @@
+<ion-content>
+  <nwb-shared-content-loader
+    [name]="paramName()"
+    [cid]="paramCid()"
+    (importClicked)="onImportClicked($event)"
+    [showImport]="true"
+    [showGateways]="true"
+    [validType]="validType"
+    #loader
+  />
+  @if (loader.record(); as record) {
+    <div class="max-w-5xl mx-auto">
+      <nwb-skill-tree-editor [ngModel]="record" [disabled]="true" />
+      @if (record.attrs) {
+        <div class="layout-pad">
+          <nwb-attributes-editor [freeMode]="true" [assigned]="record.attrs" />
+        </div>
+      }
+    </div>
+  }
+</ion-content>

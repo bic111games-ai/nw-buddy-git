@@ -1,0 +1,13 @@
+diff --git a/index.js b/index.js
+index 176dda98a30e6c1e4c96ae1027e39c2990a70aee..fd2d741d40d0c79e154ae17c9c41388e839f386e 100644
+--- a/index.js
++++ b/index.js
+@@ -1,7 +1,7 @@
+ 'use strict';
+ 
+ var Buffer = require('safe-buffer').Buffer;
+-var Transform = require('stream').Transform;
++var Transform = require('stream-browserify').Transform;
+ var StringDecoder = require('string_decoder').StringDecoder;
+ var inherits = require('inherits');
+ var toBuffer = require('to-buffer');

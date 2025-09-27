@@ -1,0 +1,221 @@
+<div class="bg-black rounded-sm overflow-hidden font-nimbus">
+  <nwb-item-header class="gap-2">
+    <a [routerLink]="link()" class="relative">
+      <nwb-item-icon [solid]="false" [nwbItemIcon]="store.icon()" [cover]="true" class="w-20" />
+      <img nwImage="assets/icons/menu/transmogtoken.webp" class="w-4 h-4 absolute right-1 bottom-1" />
+    </a>
+    <nwb-item-header-content
+      [title]="store.name() | nwText"
+      [titleLink]="link()"
+      [text1]="commonText()"
+      [text3]="store.category()?.name | nwText"
+      [showSkeleton]="showSkeleton()"
+    >
+      @if (showMissing()) {
+        <span header-text2 class="text-error">Not found</span>
+      } @else {
+        <span header-text2>Transmog Appearance</span>
+      }
+    </nwb-item-header-content>
+  </nwb-item-header>
+  <div class="p-3 leading-snug flex flex-col gap-2">
+    @if (showSkeleton()) {
+    } @else if (showMissing()) {
+      <p class="text-error italic">
+        <code class="text-white">{{ store.appearanceId() }}</code> does not exist.
+      </p>
+    } @else {
+      @if (store.description()) {
+        <p class="text-nw-description italic">{{ store.description() | nwText }}</p>
+      }
+      @if (transmogDyeSlots(); as slots) {
+        <div class="flex flex-col text-sm">
+          <h3 class="font-bold">Color palette / Dye slots:</h3>
+          @for (slot of slots; track $index) {
+            <div class="flex flex-row items-center gap-2">
+              <span>{{ slot.name }}</span>
+              <span class="flex-1"></span>
+              <span class="inline-block border border-base-100 rounded-sm w-4 h-4">
+                <span
+                  class="inline-block rounded-sm w-full h-full"
+                  [style.background-color]="slot.color"
+                  [style.opacity]="slot.colorStrength"
+                  [tooltip]="tplColor"
+                >
+                  <ng-template #tplColor>
+                    <div class="p-1 text-xs border border-transparent rounded-sm flex flex-row gap-1 items-center">
+                      <span class="inline-block w-4 h-4 rounded-sm" [style.background-color]="slot.color"></span>
+                      <span>Tint color {{ slot.colorStrength | percent: '1.0-0' }} strength</span>
+                    </div>
+                  </ng-template>
+                </span>
+              </span>
+              <nwb-icon
+                [icon]="iconDye"
+                [class.text-success]="slot.dyeEnabled"
+                [class.text-error]="!slot.dyeEnabled"
+                [style.opacity]="slot.dyeEnabled ? slot.dyeStrength : 1"
+                class="w-4 h-4"
+                [tooltip]="tplDye"
+              >
+                <ng-template #tplDye>
+                  <div class="p-1 text-xs border border-transparent rounded-sm">
+                    @if (slot.dyeEnabled) {
+                      <div>
+                        <span class="text-success">Dye slot enabled, </span>
+                        <span>{{ slot.dyeStrength | percent: '1.0-0' }} strength</span>
+                      </div>
+                    } @else {
+                      <div class="text-error">Dye slot disabled</div>
+                    }
+                  </div>
+                </ng-template>
+              </nwb-icon>
+            </div>
+          }
+        </div>
+      }
+
+      @if (models(); as models) {
+        @if (!modelViewerOpened) {
+          <button
+            class="btn btn-xs btn-outline btn-block btn-ghost rounded-md opacity-50"
+            (click)="modelViewerOpened = true"
+          >
+            View 3D Model
+          </button>
+        }
+        @if (modelViewerOpened) {
+          <nwb-model-viewer
+            [models]="models"
+            class="w-full rounded-md aspect-square"
+            (close)="modelViewerOpened = false"
+          />
+          <button
+            class="btn btn-xs btn-outline btn-block btn-ghost rounded-md opacity-50"
+            (click)="modelViewerOpened = false"
+          >
+            Close
+          </button>
+        }
+      }
+
+      @if (other(); as other) {
+        <a
+          class="btn btn-xs btn-outline btn-block btn-ghost rounded-md opacity-50"
+          [routerLink]="['.']"
+          [queryParams]="{ gender: other }"
+          [queryParamsHandling]="'merge'"
+        >
+          Show {{ other }} variant
+        </a>
+      }
+    }
+  </div>
+</div>
+
+@if (showContent() && itemset(); as others) {
+  <h3 class="prose mt-2">Full Set</h3>
+  <nwb-item-header class="grid grid-cols-fill-5xs flex-wrap gap-1 rounded-md overflow-clip">
+    @for (item of others; track $index) {
+      <div>
+        <a [routerLink]="['transmog', item.id] | nwLink" class="relative w-fill aspect-square block rounded-sm">
+          <nwb-item-icon [solid]="false" [nwbItemIcon]="item.appearance.IconPath" class="w-fill"> </nwb-item-icon>
+          <img nwImage="assets/icons/menu/transmogtoken.webp" class="w-4 h-4 absolute right-1 bottom-1" />
+        </a>
+      </div>
+    }
+  </nwb-item-header>
+}
+
+@if (showContent() && similarItemsVm(); as vm) {
+  <h3 class="prose mt-2">Items with appearance ({{ vm.count }})</h3>
+  @if (!vm.count) {
+    <div>
+      <div class="alert shadow-lg my-2 bg-base-100">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          class="stroke-error flex-shrink-0 w-6 h-6 self-start"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        <div>
+          <h3 class="font-bold">Not obtainable</h3>
+          <div class="text-xs">There are no items with this appearance</div>
+        </div>
+      </div>
+    </div>
+  }
+  @if (vm.tabs.length > 1) {
+    <nwb-tabs-host>
+      <nwb-tab-left
+        class="btn btn-sm btn-square btn-ghost w-5"
+        [disabled]="!tabs.canScrollLeft()"
+        [class.hidden]="!tabs.canScroll()"
+      />
+      <nwb-tab-right
+        class="btn btn-sm btn-square btn-ghost w-5"
+        [disabled]="!tabs.canScrollRight()"
+        [class.hidden]="!tabs.canScroll()"
+      />
+      <nwb-tabs
+        [active]="similarItemsTab()"
+        (activeChange)="similarItemsTab.set($event)"
+        class="tabs tabs-border bg-base-300"
+        #tabs
+      >
+        @for (tab of vm.tabs; track $index) {
+          <nwb-tab class="flex-1 whitespace-nowrap" [value]="tab.name">
+            {{ tab.name }} ({{ tab.items.length }})
+          </nwb-tab>
+        }
+      </nwb-tabs>
+    </nwb-tabs-host>
+  }
+  <div class="flex flex-col gap-1">
+    @for (item of vm.items; track $index) {
+      <nwb-item-detail [itemId]="item" class="rounded-md overflow-clip">
+        <nwb-item-detail-header [enableLink]="true" [enableInfoLink]="true" [enableTracker]="true" />
+      </nwb-item-detail>
+    }
+  </div>
+}
+
+@if (showContent() && similarTransmogs(); as siblings) {
+  @if (siblings.length) {
+    <h3 class="prose mt-2">Similar appearances ({{ siblings.length }})</h3>
+    <div class="flex flex-col gap-2">
+      @for (sibling of siblings; track $index) {
+        <nwb-item-header class="gap-2 rounded-md overflow-clip">
+          <a [routerLink]="['transmog', sibling.id] | nwLink" class="relative">
+            <nwb-item-icon [solid]="false" [nwbItemIcon]="sibling.appearance.IconPath" class="w-20"> </nwb-item-icon>
+            <img nwImage="assets/icons/menu/transmogtoken.webp" class="w-4 h-4 absolute right-1 bottom-1" />
+            <div class="flex flex-row items-center absolute bottom-[1px] left-[1px] right-[1px]">
+              @for (slot of dyeSlots(sibling); track $index) {
+                <span
+                  class="flex-1 h-1"
+                  [style.background-color]="slot.color"
+                  [style.opacity]="slot.colorStrength"
+                ></span>
+              }
+            </div>
+          </a>
+          <nwb-item-header-content
+            [title]="sibling.appearance.Name | nwText"
+            [titleLink]="['transmog', sibling.id] | nwLink"
+            [text1]="'Common'"
+            [text3]="categoryName(sibling.category) | nwText"
+          >
+          </nwb-item-header-content>
+        </nwb-item-header>
+      }
+    </div>
+  }
+}

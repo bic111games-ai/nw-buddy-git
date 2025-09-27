@@ -1,0 +1,93 @@
+<nwb-item-header class="gap-2">
+  <a [nwbItemIcon]="store.icon()" [solid]="true" [nwLinkTooltip]="['quest', questId()]" class="w-[76px] h-[76px]"> </a>
+
+  <nwb-item-header-content
+    class="z-10"
+    [title]="store.title() | nwText | nwTextBreak: ' - '"
+    [text1]="store.type() | nwHumanize"
+    [text2]="'quest'"
+    [text3]="store.levelLabel()"
+    [showSkeleton]="!store.isLoaded()"
+  />
+</nwb-item-header>
+<nwb-quest-detail-description class="p-4" />
+<div role="tablist" class="tabs tabs-border">
+  @for (tab of tabs; track $index) {
+    <a
+      role="tab"
+      class="tab"
+      [routerLink]="'.'"
+      [queryParams]="{ tab: tab.id }"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLinkActive]="'tab-active'"
+    >
+      {{ tab.label }}
+    </a>
+  }
+</div>
+<div class="p-4 flex flex-col gap-4">
+  @switch (tab()) {
+    @case ('npcs') {
+      <nwb-quest-detail-conversation-list />
+      <nwb-quest-detail-destination />
+    }
+    @case ('tree') {
+      <nwb-quest-tree [questId]="questId()" />
+    }
+    @default {
+      @if (store.taskId()) {
+        <div class="flex flex-col gap-1">
+          <h3 class="font-bold">Tasks</h3>
+          <nwb-quest-task-detail [taskId]="store.taskId()" />
+        </div>
+      }
+
+      @if (store.schedule(); as text) {
+        <div class="flex flex-col gap-1">
+          <h3 class="font-bold">Schedule</h3>
+          <div class="px-2">{{ text | nwHumanize }}</div>
+        </div>
+      }
+      @if (store.rewards(); as rewards) {
+        <div class="flex flex-col gap-1">
+          <h3 class="font-bold">Rewards</h3>
+          <nwb-game-event-detail-rewards [rewards]="rewards" />
+        </div>
+      }
+      @if (store.eventStatusEffect(); as effect) {
+        <div class="flex flex-col gap-1">
+          <h3 class="font-bold">Rewards Effect</h3>
+          <a class="flex-1 link-hover pl-2" [routerLink]="['status-effect', effect.StatusID] | nwLink">
+            <span>{{ effect.DisplayName || (effect.StatusID | nwHumanize) | nwText }}</span>
+          </a>
+        </div>
+      }
+      @if (store.requiredAchievementId(); as value) {
+        <div class="flex flex-col gap-1">
+          <h3 class="font-bold">Required Achievement</h3>
+          <nwb-required-achievement [achievementId]="value" />
+        </div>
+      }
+      @if (store.requiredFaction(); as value) {
+        <h3 class="font-bold">Required Faction: {{ value }}</h3>
+      }
+      @if (store.requiredLevel(); as value) {
+        <h3 class="font-bold">Required Level: {{ value }}</h3>
+      }
+      <!-- @if (store.requiredProgression(); as value) {
+        <div>
+          <h3 class="font-bold">Required Progression</h3>
+          <code class="ml-4 text-xs">{{ value }}</code>
+        </div>
+      } -->
+      @if (store.followup(); as followup) {
+        <div class="flex flex-col gap-1">
+          <h3 class="font-bold">Follow Up Quests</h3>
+          @for (row of followup; track $index) {
+            <nwb-quest-detail-follow-up [data]="row" />
+          }
+        </div>
+      }
+    }
+  }
+</div>

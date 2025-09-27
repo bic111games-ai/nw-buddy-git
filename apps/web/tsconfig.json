@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": [],
+    "paths": {
+      "~/*": [
+        "./app/*"
+      ],
+      "@nw-data/common": ["../../libs/nw-data/common"],
+      "@nw-data/generated": ["../../libs/nw-data/generated"],
+      "@nw-data/db": ["../../libs/nw-data/db"],
+      "@nw-serve": ["../../libs/nw-serve"]
+    }
+  },
+  "files": [
+    "main.ts",
+    "main.server.ts",
+    "polyfills.ts"
+  ],
+  "include": [
+    "**/*.d.ts"
+  ],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.stories.ts",
+    "../server/main.ts"
+  ]
+}

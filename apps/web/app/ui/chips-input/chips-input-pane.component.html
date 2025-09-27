@@ -1,0 +1,14 @@
+<div class="grid grid-cols-3 gap-1">
+  @for (tag of paneTags(); track $index) {
+    <button class="btn btn-sm btn-primary" [class.btn-outline]="!tag.checked" (click)="toggleTag(tag.value)">
+      {{ tag.value }}
+    </button>
+  }
+  <nwb-chips-input
+    class="col-start-1 col-span-3"
+    [maxLength]="maxLength()"
+    [placeholder]="placeholder()"
+    [ngModel]="inputTags()"
+    (ngModelChange)="updateInputTags($event)"
+  />
+</div>

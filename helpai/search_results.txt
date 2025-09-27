@@ -1,0 +1,6 @@
+nwb-data-view|D:\NW_F-aktoria_App3\nw-buddy\nw-buddy\apps\web\app\ui\data\data-view\data-view-category-menu.component.ts|26|selector: 'nwb-data-view-category-menu,button[nwbDataCateogryMenu]',
+nwb-data-view|D:\NW_F-aktoria_App3\nw-buddy\nw-buddy\apps\web\app\ui\data\data-view\data-view-options-menu.component.ts|11|selector: 'nwb-data-view-options-menu,[nwbDataViewOptionsMenu]',
+nwb-data-view|D:\NW_F-aktoria_App3\nw-buddy\nw-buddy\apps\web\app\ui\data\data-view\data-view-picker.component.ts|53|selector: 'nwb-data-view-picker',
+nwb-data-view|D:\NW_F-aktoria_App3\nw-buddy\nw-buddy\apps\web\app\ui\data\data-view\data-view-picker.stories.ts|47|title: 'UI / nwb-data-view-picker',
+nwb-data-view|D:\NW_F-aktoria_App3\nw-buddy\nw-buddy\apps\web\app\ui\data\data-view\data-view-pin.component.ts|16|selector: 'nwb-data-view-pin,[nwbDataViewPin]',
+nwb-data-view|D:\NW_F-aktoria_App3\nw-buddy\nw-buddy\apps\web\app\ui\data\data-view\data-view-toggle.component.ts|9|selector: 'nwb-data-view-toggle,[nwbDataViewToggle]',

@@ -1,0 +1,14 @@
+<nwb-item-card
+  [entity]="item.itemId"
+  [enableTracker]="true"
+  [disableInfo]="true"
+  [enableLink]="true"
+  [enableInfoLink]="true"
+  [nwbItemMarker]="item.itemId"
+  #itemMarker="itemMarker"
+  [class.is-collected]="!!itemMarker.value()"
+  class="w-full h-full"
+>
+  <nwb-item-divider />
+  <nwb-crafting-calculator [entity]="item.recipe" [recipeOnly]="true" class="-mx-4" />
+</nwb-item-card>

@@ -1,0 +1,35 @@
+<nwb-item-header class="gap-2">
+  <a [nwbItemIcon]="store.icon()" [nwLinkTooltip]="['mount', store.mountId()]" class="w-[76px] h-[76px]"> </a>
+  <nwb-item-header-content
+    class="z-10"
+    [title]="store.name() | nwText | nwTextBreak: ' - '"
+    [text1]="store.source()"
+    [text2]="store.type() | nwHumanize"
+  />
+</nwb-item-header>
+<div class="p-3 flex flex-col gap-2">
+  @if(store.description() | nwText: { itemId: store.mountId() }| nwTextBreak; as description) {
+    <div [nwHtml]="description" class="text-nw-description italic"></div>
+    <nwb-item-divider/>
+  }
+  @if(store.unlockMethod(); as text) {
+    <nwb-item-stat [label]="'Unlocked at'" >{{ text | nwText }}</nwb-item-stat>
+  }
+
+  @if (store.models()?.length) {
+    @if (modelViewerOpened) {
+      <nwb-model-viewer [models]="store.models()" class="w-full rounded-md aspect-square" (close)="modelViewerOpened = false" />
+    }
+    <button
+      class="btn btn-xs btn-outline btn-block btn-ghost rounded-md opacity-50"
+      (click)="modelViewerOpened = !modelViewerOpened"
+    >
+      @if (!modelViewerOpened) {
+        View 3D Model
+      } @else {
+        Close
+      }
+    </button>
+  }
+  <ng-content />
+</div>

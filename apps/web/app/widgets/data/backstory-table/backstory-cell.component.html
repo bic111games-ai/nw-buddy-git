@@ -1,0 +1,68 @@
+<nwb-item-header class="gap-2 flex-none">
+  <picture class="flex items-center justify-center w-16 aspect-square relative">
+    <img
+      [nwImage]="'assets/icons/glorydiamonddetailed.png'"
+      class="absolute top-0 left-0 w-full h-full block rotate-45"
+    />
+    <span class="relative text-2xl font-bold font-caslon">{{ playerLevel() }}</span>
+  </picture>
+  <nwb-item-header-content
+    [title]="data.BackstoryName | nwHumanize"
+    [text1]="'Backstory'"
+    [text2]="data.PlaytestType"
+  />
+</nwb-item-header>
+<div
+  class="flex-1 flex flex-col gap-4 bg-no-repeat p-4 overflow-hidden relative"
+  [style.background-size]="'100% auto'"
+  [style.background-image]="backgroundImage()"
+>
+  @if (playerLevel() && !data?.FactionOverride) {
+    <div
+      class="absolute top-0 left-0 w-full aspect-square flex items-center justify-center text-9xl font-caslon pointer-events-none z-0 opacity-75"
+    >
+      {{ playerLevel() }}
+    </div>
+  }
+  <div class="flex-1 z-0" #refTop>
+    @defer (on viewport(refTop)) {
+      <div class="grid grid-cols-2 gap-1">
+        @for (cell of tradeskills(); track $index) {
+          <div class="flex flex-row gap-2 text-shadow-sm shadow-black leading-tight">
+            <img [nwImage]="cell.Icon" class="w-5 h-5" />
+            <span>{{ cell.level }}</span>
+            <span>{{ cell.label | nwText }}</span>
+          </div>
+        }
+      </div>
+      <div class="grid grid-cols-2 gap-1">
+        @for (cell of props(); track $index) {
+          <div class="flex flex-row gap-2 text-shadow-sm shadow-black leading-tight">
+            <img [nwImage]="cell.icon" class="w-5 h-5" />
+            <span>{{ cell.value | number }} {{ cell.label }}</span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+  <div class="flex-1 p-2 bg-base-300 border border-base-100 rounded-md overflow-auto" #refBottom>
+    <div class="grid grid-cols-6 gap-2">
+      @defer (on viewport(refBottom)) {
+        @for (cell of data.$inventoryItems; track $index) {
+          <a [routerLink]="['item', cell.itemId] | nwLink">
+            <nwb-item-slot [rarity]="cell.rarity" [isNamed]="cell.isNamed" [icon]="cell.item" [tooltip]="tplItem" />
+            <ng-template #tplItem>
+              <nwb-item-card
+                [entity]="cell.itemId"
+                [gsOverride]="cell.gearScore"
+                [perkOverride]="cell.perks"
+                [disableInfo]="true"
+                class="w-80"
+              />
+            </ng-template>
+          </a>
+        }
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<nwb-game-event-detail [eventId]="eventId()" #detail>
+  @if (detail.lootTableId(); as table) {
+    <nwb-loot-graph [tableId]="table" [showLocked]="true" [expand]="false" class="mt-2" />
+  }
+</nwb-game-event-detail>

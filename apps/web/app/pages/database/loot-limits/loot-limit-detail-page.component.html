@@ -1,0 +1,39 @@
+<div class="flex flex-col gap-2">
+  <nwb-loot-limit-detail [limitId]="limitId()" #detail [class.hidden]="!detail.lootLimit()" />
+  @if (detail.item(); as item) {
+    <h3 class="propse mt-2">Item with same ID</h3>
+    <nwb-item-card
+      [entity]="item"
+      [disableDescription]="true"
+      [disableInfo]="true"
+      [disablePerks]="true"
+      [disableStats]="true"
+    />
+  }
+  @for (table of detail.lootTables(); track $index; let isFirst = $first) {
+    @if (isFirst) {
+      <h3 class="propse mt-2">Occurs In Loot Table</h3>
+    }
+    <nwb-loot-graph [tableId]="table" [showLocked]="true" [highlight]="limitId()" class="overflow-hidden" />
+  }
+  @for (event of detail.eventsBeforeLimit(); track $index; let isFirst = $first) {
+    @if (isFirst) {
+      <h3 class="propse mt-2">Events Before Limit</h3>
+    }
+    <nwb-game-event-detail [eventId]="event.EventID" #ed="detail">
+      @if (ed.lootTableId(); as table) {
+        <nwb-loot-graph class="mt-2" [tableId]="table" [showLocked]="true" [expand]="false" />
+      }
+    </nwb-game-event-detail>
+  }
+  @for (event of detail.eventsAfterLimit(); track $index; let isFirst = $first) {
+    @if (isFirst) {
+      <h3 class="propse mt-2">Events After Limit</h3>
+    }
+    <nwb-game-event-detail [eventId]="event.EventID" #ed="detail">
+      @if (ed.lootTableId(); as table) {
+        <nwb-loot-graph class="mt-2" [tableId]="table" [showLocked]="true" [expand]="false" />
+      }
+    </nwb-game-event-detail>
+  }
+</div>

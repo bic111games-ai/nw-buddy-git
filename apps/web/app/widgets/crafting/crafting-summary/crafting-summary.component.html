@@ -1,0 +1,23 @@
+<nwb-tabs-host>
+  <nwb-tab-left
+    class="btn btn-sm btn-square btn-ghost w-5"
+    [disabled]="!tabs.canScrollLeft()"
+    [class.hidden]="!tabs.canScroll()"
+  />
+  <nwb-tab-right
+    class="btn btn-sm btn-square btn-ghost w-5"
+    [disabled]="!tabs.canScrollRight()"
+    [class.hidden]="!tabs.canScroll()"
+  />
+  <nwb-tabs [active]="tab()" (activeChange)="tab.set($event)" class="tabs tabs-lift" #tabs>
+    <nwb-tab class="flex-1 whitespace-nowrap" [value]="'resources'"> Buy Order </nwb-tab>
+    <nwb-tab class="flex-1 whitespace-nowrap" [value]="'skills'"> +Tradeskill </nwb-tab>
+    <nwb-tab class="flex-1 whitespace-nowrap" [value]="'standing'"> +Standing </nwb-tab>
+  </nwb-tabs>
+</nwb-tabs-host>
+
+<div class="bg-base-100 rounded-b-md overflow-clip mx-[1px]">
+  <tab-resources [summary]="leafs()" [total]="total()" [class.hidden]="tab() !== 'resources'" />
+  <tab-tradeskills [summary]="nodes()"  [class.hidden]="tab() !== 'skills'"/>
+  <tab-standing [summary]="nodes()"  [class.hidden]="tab() !== 'standing'"/>
+</div>

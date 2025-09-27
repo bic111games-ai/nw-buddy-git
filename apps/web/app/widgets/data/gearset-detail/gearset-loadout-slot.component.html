@@ -1,0 +1,29 @@
+<nwb-item-detail
+  [itemId]="store.item()"
+  [perkOverride]="store.instance()?.perks"
+  class="p-1"
+  class="flex flex-row gap-1"
+  [tooltip]="store.instance() ? tplTip : null"
+  [tooltipClass]="'p-0'"
+  #detail
+>
+  <nwb-item-slot
+    class="w-full max-w-14 aspect-square"
+    [slotIcon]="store.slot()?.icon"
+    [icon]="store.item()"
+    [rarity]="store.rarity()"
+    [isNamed]="store.isNamed()"
+    [isLinked]="store.isLinked()"
+    [gemIcon]="detail.slottedGemIcon()"
+  />
+</nwb-item-detail>
+
+<ng-template #tplTip>
+  <nwb-item-card
+    class="relative flex-1"
+    [entity]="store.instance().itemId"
+    [gsOverride]="store.instance().gearScore"
+    [perkOverride]="store.instance().perks"
+    [disableInfo]="true"
+  />
+</ng-template>

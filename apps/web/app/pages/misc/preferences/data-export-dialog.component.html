@@ -1,0 +1,81 @@
+<ng-container *ngIf="vm$ | async; let vm">
+  <ion-header>
+    <ion-toolbar class="ion-color ion-color-black rounded-t-md">
+      <ion-title>
+        <nwb-icon
+          class="w-4 h-4 mr-4"
+          [icon]="vm.active ? iconSpinner : iconExport"
+          [class.text-primary]="vm.active"
+          [class.animate-spin]="vm.active"
+        />
+        Export data
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-p-4 prose">
+    <ng-container *ngIf="!vm.complete">
+      <div class="join flex">
+        <button
+          class="join-item flex-1 btn"
+          [class.btn-primary]="!vm.publicExport"
+          (click)="patchState({ publicExport: false })"
+        >
+          Private Backup
+        </button>
+        <button
+          class="join-item flex-1 btn"
+          [class.btn-primary]="vm.publicExport"
+          (click)="patchState({ publicExport: true })"
+        >
+          Public Export
+        </button>
+      </div>
+      <p *ngIf="!vm.publicExport">
+        Creates a full backup, including all preferences and data tables. If you want to share the export with someone
+        please select the "Public" export method.
+      </p>
+      <p *ngIf="vm.publicExport">
+        Use this export option if you intend to share the data with someone. Sensitive settings such as API keys and
+        permalink private keys are excluded from export.
+      </p>
+    </ng-container>
+
+    <ng-container *ngIf="vm.complete && vm.error">
+      <div class="alert alert-error">
+        <nwb-icon [icon]="iconError" class="w-6 h-6" />
+        <div class="w-full">
+          <div class="text-xs">Something went wrong.</div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="vm.complete && !vm.error">
+      <div class="alert alert-success">
+        <nwb-icon [icon]="iconSuccess" class="w-6 h-6" />
+        <div class="w-full">
+          <div class="text-xs">Export complete.</div>
+        </div>
+      </div>
+    </ng-container>
+  </ion-content>
+
+  <ion-footer class="rounded-b-md">
+    <ion-toolbar class="ion-color ion-color-base-300">
+      <div slot="end" class="join px-1 w-full sm:w-auto">
+        <button class="join-item flex-1 sm:flex-none btn btn-ghost" (click)="close()">Close</button>
+        <button class="join-item flex-1 sm:flex-none btn btn-ghost min-w-28" (click)="openJson()">Open raw JSON</button>
+        @if (!vm.complete) {
+          <button
+            class="join-item flex-1 sm:flex-none btn btn-ghost text-primary"
+            [class.loading]="vm.active"
+            (click)="export()"
+            [disabled]="vm.active"
+          >
+            Export
+          </button>
+        }
+      </div>
+    </ion-toolbar>
+  </ion-footer>
+</ng-container>

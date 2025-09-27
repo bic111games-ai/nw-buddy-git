@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar class="ion-color ion-color-black rounded-t-md">
+    <ion-title>Attributes</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-p-4">
+  <nwb-attributes-editor
+    [level]="level"
+    [base]="base"
+    [assigned]="assigned"
+    [buffs]="buffs"
+    [magnify]="magnify"
+    [magnifyPlacement]="magnifyPlacement"
+    (assignedChanged)="setAssigned($event)"
+    (magnifyPlacementChanged)="setMagnifyPlacement($event)"
+    #attrs
+  />
+  @if (weapon1ItemId || weapon2ItemId) {
+    <ion-segment [value]="tab" class="mt-4">
+      <ion-segment-button [value]="weapon1ItemId" (click)="tab = weapon1ItemId">
+        <span>
+          {{ weapon1.name() | nwText }}
+        </span>
+        <span>
+          (
+          @if (scale1.damageInvalid$ | async; as value) {
+            <span class="line-through opacity-50"> {{ value | number: '0.1-1' }} </span>
+          }
+          @if (scale1.damage$ | async; as value) {
+            <span> {{ value | number: '0.1-1' }} </span>
+          } @else {
+            <span> 0 </span>
+          }
+          )
+        </span>
+      </ion-segment-button>
+      <ion-segment-button [value]="weapon2ItemId" (click)="tab = weapon2ItemId">
+        <span>
+          {{ weapon2.name() | nwText }}
+        </span>
+        <span>
+          (
+          @if (scale2.damageInvalid$ | async; as value) {
+            <span class="line-through opacity-50"> {{ value | number: '0.1-1' }} </span>
+          }
+          @if (scale2.damage$ | async; as value) {
+            <span> {{ value | number: '0.1-1' }} </span>
+          } @else {
+            <span> 0 </span>
+          }
+          )
+        </span>
+      </ion-segment-button>
+    </ion-segment>
+
+    <nwb-attributes-scale
+      class="p-1"
+      [nwbItemDetail]="weapon1ItemId"
+      #weapon1="itemDetail"
+      #scale1
+      [class.hidden]="tab !== weapon1ItemId"
+      [attrDex]="attrs.totalDex$ | async"
+      [attrStr]="attrs.totalStr$ | async"
+      [attrInt]="attrs.totalInt$ | async"
+      [attrFoc]="attrs.totalFoc$ | async"
+      [level]="level"
+      [weaponItemId]="weapon1ItemId"
+      [gearScore]="weapon1GearScore"
+      [affixId]="weapon1AffixId"
+    />
+
+    <nwb-attributes-scale
+      class="p-1"
+      [nwbItemDetail]="weapon2ItemId"
+      #weapon2="itemDetail"
+      #scale2
+      [class.hidden]="tab !== weapon2ItemId"
+      [attrDex]="attrs.totalDex$ | async"
+      [attrStr]="attrs.totalStr$ | async"
+      [attrInt]="attrs.totalInt$ | async"
+      [attrFoc]="attrs.totalFoc$ | async"
+      [weaponItemId]="weapon2ItemId"
+      [gearScore]="weapon2GearScore"
+      [affixId]="weapon2AffixId"
+    />
+  }
+</ion-content>
+
+<ion-footer class="rounded-b-md">
+  <ion-toolbar class="ion-color ion-color-base-300">
+    <div slot="end" class="join px-1 w-full sm:w-auto">
+      <button class="join-item flex-1 btn btn-ghost min-w-28" (click)="close()">Cancel</button>
+      <button class="join-item flex-1 btn btn-ghost text-primary min-w-28" (click)="commit()">OK</button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

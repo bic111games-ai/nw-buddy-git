@@ -1,0 +1,177 @@
+<div class="flex flex-row justify-between">
+  <span class="label"> Weapon </span>
+  <span class="label" [class.text-primary]="scalingIsHigher"> Scaling {{ scalingSum | number: '0.2-2' }} </span>
+</div>
+@if (!isBound) {
+  <span class="join w-full" [cdkMenuTriggerFor]="tplWeaponTag">
+    <button class="join-item btn btn-sm flex-1">
+      @if (weapon(); as wpn) {
+        <img [nwImage]="wpn.icon" class="w-8" />
+        <span>{{ wpn.name | nwText }}</span>
+      } @else {
+        <span class="italic"> - not selected - </span>
+      }
+    </button>
+    <ng-template #tplWeaponTag>
+      <ul
+        class="menu bg-base-200 border border-base-100 rounded-md w-80 max-h-[80vh] overflow-y-auto flex flex-col flex-nowrap"
+        cdkMenu
+      >
+        <li class="w-80" cdkMenuItem>
+          <a (click)="weaponTag.value = null">
+            <span class="w-8 ml-2"></span>
+            <span>None </span>
+          </a>
+        </li>
+        @for (item of weaponOptions(); track $index) {
+          <li class="w-80" cdkMenuItem>
+            <a (click)="weaponTag.value = item.value">
+              <img [nwImage]="item.icon" class="w-8 ml-2" />
+              <span>{{ item.label | nwText }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </ng-template>
+  </span>
+}
+<span class="join w-full">
+  <button class="join-item btn btn-sm w-20 justify-start text-left" [cdkMenuTriggerFor]="isBound ? null : tplGsSlider">
+    GS
+  </button>
+  <nwb-precision-input
+    class="join-item input border-0 input-sm text-right w-full"
+    [min]="gsMin"
+    [max]="gsMax"
+    [step]="1"
+    [stepShift]="100"
+    [stepCtrl]="10"
+    [(ngModel)]="gearScore.value"
+    [disabled]="isBound"
+    [class.text-white]="isBound && gearScore.value"
+    [class.text-error]="!gearScore.value"
+  />
+  <ng-template #tplGsSlider>
+    <div class="bg-base-200 border border-base-100 rounded-lg p-4 w-80" cdkMenu>
+      <nwb-input-slider
+        class="w-full"
+        [size]="'xs'"
+        [min]="gsMin"
+        [max]="gsMax"
+        [step]="1"
+        [bars]="true"
+        [barsStep]="100"
+        [values]="true"
+        [(ngModel)]="gearScore.value"
+      />
+    </div>
+  </ng-template>
+
+  <span class="join-item input border-0 input-sm bg-base-200">
+    {{ gearScoreFactor | number: '0.2-2' }}
+  </span>
+  <button class="join-item btn btn-sm btn-square" [tooltip]="tipGearScore" [preventClick]="true">
+    <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+  </button>
+</span>
+<span class="join w-full">
+  <button class="join-item btn btn-sm w-20 justify-start text-left" [cdkMenuTriggerFor]="tplDamageSlider">
+    Damage
+  </button>
+  <nwb-precision-input
+    class="join-item input border-0 input-sm text-right w-full"
+    [min]="0"
+    [step]="1"
+    [stepShift]="10"
+    [stepCtrl]="5"
+    [(ngModel)]="weaponDamage.value"
+    [disabled]="hasWeaponTag"
+    [class.text-white]="hasWeaponTag && weaponDamage.value"
+    [class.text-error]="!weaponDamage.value"
+  />
+  <ng-template #tplDamageSlider>
+    <div class="bg-base-200 border border-base-100 rounded-lg p-4 w-80" cdkMenu>
+      <nwb-input-slider
+        class="w-full"
+        [size]="'xs'"
+        [min]="0"
+        [max]="100"
+        [step]="1"
+        [bars]="true"
+        [barsStep]="20"
+        [values]="true"
+        [(ngModel)]="weaponDamage.value"
+      />
+    </div>
+  </ng-template>
+  <button class="join-item btn btn-sm btn-square" [tooltip]="tipDamage" [preventClick]="true">
+    <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+  </button>
+</span>
+<span class="join w-full">
+  <button class="join-item btn btn-sm w-20 justify-start text-left">Scaling</button>
+  @for (item of scaling; track $index) {
+    <nwb-precision-input
+      class="join-item input border-0 input-sm w-full text-white focus-within:z-10"
+      [min]="0"
+      [max]="100"
+      [step]="1"
+      [stepShift]="10"
+      [stepCtrl]="1"
+      [stepAlt]="0.1"
+      [(ngModel)]="item.access.value"
+      [unit]="'%'"
+      [disabled]="hasWeaponTag"
+    >
+      <span class="absolute top-0 left-0 text-xs leading-none text-white/30 scale-75">{{
+        item.label
+      }}</span>
+    </nwb-precision-input>
+  }
+  <button class="join-item btn btn-sm btn-square" [tooltip]="tipScaling" [preventClick]="true">
+    <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+  </button>
+</span>
+
+<ng-template #tipGearScore>
+  <div class="p-2 prose prose-sm leading-tight w-80">
+    <h4>Weapon Gear Score</h4>
+    <p>The weapon's actual gear score.</p>
+    <p>
+      In <span class="text-info font-bold">PvP</span>, this value adjusts based on the average gear score difference.
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #tipDamage>
+  <div class="p-2 prose prose-sm leading-tight w-80">
+    <h4>Weapon Damage</h4>
+    <p>The weapon's base damage.</p>
+  </div>
+</ng-template>
+
+<ng-template #tipScaling>
+  <div class="p-2 prose prose-sm leading-tight w-80">
+    <h4>Weapon Scaling</h4>
+    @if (weapon()) {
+      <p>The weapon scales with:</p>
+      <p>
+        @for (item of scalingInfos; track $index) {
+          <div class="grid grid-cols-dl gap-2">
+            @if (item.scaling) {
+              <span>{{ item.scaling * 100 | percent: '0.0-1' }}</span>
+              <div>
+                <span>of {{ item.label }} </span>
+                <span> ({{ item.stat }}) </span>
+                <span> = {{ item.value * 100 | number: '0.0-1' }}% </span>
+              </div>
+            }
+          </div>
+        }
+      </p>
+      <p>Giving a final scaling of {{ scalingSum | percent: '0.0-2' }} or {{ scalingSum | number: '0.0-2' }}.</p>
+    } @else {
+      <p>No weapon selected.</p>
+    }
+  </div>
+</ng-template>

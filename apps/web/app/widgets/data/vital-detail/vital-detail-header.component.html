@@ -1,0 +1,72 @@
+@if (!store.isLoaded()) {
+  <span class="absolute left-1 skeleton w-12 h-12 rounded-full bg-base-200"></span>
+} @else if (familyIcon()) {
+  <a class="absolute left-1" [nwLinkTooltip]="['vitals', id()]" target="_blank">
+    <img [nwImage]="familyIcon()" class="w-12 h-12" />
+  </a>
+}
+
+<a
+  class="flex flex-row uppercase text-sm font-serif items-center gap-1 hover:underline leading-none h-4"
+  [routerLink]="['vitals', id()] | nwLink"
+>
+  @if (store.isLoaded()) {
+    <span>
+      {{ name() | nwText }}
+    </span>
+  } @else {
+    <span class="skeleton w-28 h-4 bg-base-200"> </span>
+  }
+</a>
+<div
+  class="w-52 flex flex-row items-center justify-center leading-none border border-error-content rounded-sm bg-gradient-to-r from-red-600 via-red-950 to-red-600 font-nimbus font-bold text-center text-xs shadow-black text-shadow-sm h-[14px]"
+>
+  @if (store.isLoaded()) {
+    {{ health() | number: '1.0-0' }}
+  }
+</div>
+<div class="relative flex items-center justify-center -mt-4 pointer-events-none">
+  <div class="h-10 w-36">
+    <img [nwImage]="typeMarker()" class="block h-10 w-36 object-cover" />
+  </div>
+  <span
+    class="absolute top-2 mx-auto text-shadow-sm shadow-black pointer-events-auto"
+    [class.cursor-pointer]="editableLevel"
+    #trigger="cdkOverlayOrigin"
+    cdkOverlayOrigin
+    (click)="levelEditorOpen = editableLevel"
+  >
+    @if (store.isLoaded()) {
+      {{ level() }}
+    }
+  </span>
+  @if (editableLevel) {
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOrigin]="trigger"
+      [cdkConnectedOverlayOpen]="levelEditorOpen"
+      [cdkConnectedOverlayHasBackdrop]="false"
+      [cdkConnectedOverlayPositions]="[
+        { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetY: 2 },
+        { originX: 'center', originY: 'bottom', overlayX: 'center', overlayY: 'top', offsetY: 2 },
+        { originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top', offsetY: 2 },
+      ]"
+      [cdkConnectedOverlayPanelClass]="['bg-base-100/75', 'rounded-md', 'shadow-md', 'p-2']"
+      (overlayOutsideClick)="levelEditorOpen = false"
+      (backdropClick)="levelEditorOpen = false"
+      (detach)="levelEditorOpen = false"
+    >
+      <nwb-gs-slider
+        [ngModel]="level()"
+        (ngModelChange)="setLevel($event)"
+        [min]="minLevel"
+        [max]="maxLevel"
+        [bars]="true"
+        [barsStep]="10"
+        [values]="true"
+        class="block w-96"
+      />
+    </ng-template>
+  }
+</div>
+<ng-content />

@@ -1,0 +1,22 @@
+<table class="table table-compact w-full">
+  <thead>
+    <tr>
+      <th>Level</th>
+      <td class="text-right">XP</td>
+      <td class="text-right">XP (total)</td>
+      <td class="text-right">Title</td>
+      <td class="text-right">XP reward</td>
+    </tr>
+  </thead>
+  <tbody>
+    @for (row of data.value(); track $index; let i = $index) {
+      <tr>
+        <th>{{ row.Level | number }}</th>
+        <td class="text-right">{{ row.XPToLevel | number }}</td>
+        <td class="text-right">{{ row.XPTotal | number }}</td>
+        <td class="text-right" [nwText]="row.Title"></td>
+        <td class="text-right">{{ row.XPReward | number }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

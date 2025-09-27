@@ -1,0 +1,17 @@
+<dl class="grid grid-cols-2 gap-x-4">
+  @if (xpToNext) {
+    <dt class="text-right">XP to next</dt>
+    <dd>{{ xpToNext | number }}</dd>
+  }
+  @if (xpToMax) {
+    <dt class="text-right">XP to {{ maxLevel }}</dt>
+    <dd>{{ xpToMax | number }} ({{ xpToMaxPercent | percent }})</dd>
+  }
+  <dt class="text-right">Attribute points</dt>
+  <dd>{{ attributePoints }}</dd>
+  <dt class="text-right">Respec costs</dt>
+  <dd>{{ respecCosts | currency }}</dd>
+  <dt class="text-right">Max equippable GS</dt>
+  <dd>{{ maxEquipGs }}</dd>
+</dl>
+<ng-content />

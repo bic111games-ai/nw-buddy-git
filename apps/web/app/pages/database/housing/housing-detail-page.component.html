@@ -1,0 +1,16 @@
+<nwb-item-card
+  [entity]="itemId()"
+  [enableInfoLink]="true"
+  [enableTracker]="true"
+  [enableLink]="true"
+  [nwbScreenshotFrame]="card.store.fullName() | nwText"
+  (housingItemChange)="onEntity($event)"
+  #card="card"
+  class="flex-1"
+>
+  <nwb-item-detail-salvage-rewards class="mt-2" />
+  <nwb-item-detail-salvage-info class="mt-2" />
+  <nwb-item-detail-model-viewer class="mt-2" />
+</nwb-item-card>
+
+<nwb-item-page-tabs [itemId]="itemId()" />

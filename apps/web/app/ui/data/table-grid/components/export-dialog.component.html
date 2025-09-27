@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar class="ion-color ion-color-black rounded-t-md">
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-p-4">
+  <fieldset class="fieldset">
+    @if (!data) {
+      <label class="label w-full">
+        <input type="checkbox" class="toggle toggle-primary" [disabled]="isLoading" [(ngModel)]="exportAllCols" />
+        <span>Export all columns</span>
+      </label>
+      <label class="label w-full">
+        <input type="checkbox" class="toggle toggle-primary" [disabled]="isLoading" [(ngModel)]="exportAllRows" />
+        <span>Export all rows</span>
+      </label>
+      <label class="label w-full">
+        <input type="checkbox" class="toggle toggle-primary" [disabled]="isLoading" [(ngModel)]="exportOnlySelected" />
+        <span>Export only selected</span>
+      </label>
+      <label class="label w-full">
+        <input type="checkbox" class="toggle toggle-primary" [disabled]="isLoading" [(ngModel)]="skipHeader" />
+        <span>Skip header</span>
+      </label>
+      <label class="label w-full">
+        <input type="checkbox" class="toggle toggle-primary" [disabled]="isLoading" [(ngModel)]="suppressQuotes" />
+        <span>Suppress quotes</span>
+      </label>
+
+      <label class="input w-full">
+        <span class="label">Column separator</span>
+        <input type="text" [disabled]="isLoading" [(ngModel)]="columnSeparator" />
+      </label>
+      @if (hasError) {
+        <div class="alert alert-error alert-soft">
+          <nwb-icon [icon]="iconError" class="w-6 h-6 self-start" />
+          <div class="w-full">
+            <div class="text-xs">Something went wrong.</div>
+          </div>
+        </div>
+      }
+    } @else {
+      <label class="input w-full">
+        <span class="label">File size</span>
+        <input type="text" disabled [ngModel]="(data.size / 1024 / 1024 | number) + ' MB'" />
+      </label>
+
+      <label class="input w-full">
+        <span class="label">File name</span>
+        <input type="text" [disabled]="isLoading" [(ngModel)]="filename" />
+      </label>
+    }
+
+    @if (hasError) {
+      <div class="alert alert-error alert-soft">
+        <nwb-icon [icon]="iconError" class="w-6 h-6 self-start" />
+        <div class="w-full">
+          <div class="text-xs">Something went wrong.</div>
+        </div>
+      </div>
+    }
+  </fieldset>
+</ion-content>
+<ion-footer class="rounded-b-md">
+  <ion-toolbar class="ion-color ion-color-base-300">
+    <div slot="end" class="join px-1">
+      @if (data) {
+        <button class="join-item btn btn-ghost" (click)="copyData()">Copy to clipboard</button>
+        <button class="join-item btn btn-ghost text-primary" (click)="downloadData()">Download</button>
+      } @else {
+        <button class="join-item btn btn-ghost" (click)="close()">Cancel</button>
+        <button class="join-item btn btn-ghost text-primary" [disabled]="isLoading" (click)="export()">
+          @if (isLoading) {
+            Working...
+          } @else {
+            Export
+          }
+        </button>
+      }
+    </div>
+  </ion-toolbar>
+</ion-footer>

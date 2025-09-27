@@ -1,0 +1,185 @@
+<div class="flex flex-row">
+  <span class="label">Modifiers</span>
+</div>
+<div class="grid gap-x-4 gap-y-[6px] grid-auto-fit-80">
+  <nwb-stacked-value-control [(ngModel)]="modCritReduction.value" [percent]="true" [min]="0">
+    <span slot="start" class="join-item btn btn-sm justify-start text-left w-40"> Crit Reduction </span>
+    <button slot="end" class="join-item btn btn-sm btn-square" [tooltip]="tipCrit" [preventClick]="true">
+      <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+    </button>
+  </nwb-stacked-value-control>
+  <div class="fieldset py-0">
+    <nwb-stacked-value-control [(ngModel)]="modBaseReduction.value" [percent]="true" [min]="0">
+      <span slot="start" class="join-item btn btn-sm justify-start text-left w-40">
+        <img [nwImage]="store.offenderWeaponDamageTypeIcon()" class="w-5 h-5" />
+        Base Reduction
+      </span>
+      <button slot="end" class="join-item btn btn-sm btn-square" [tooltip]="tipBase" [preventClick]="true">
+        <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+      </button>
+    </nwb-stacked-value-control>
+    @if (store.offenderAffixIsActive()) {
+      <nwb-stacked-value-control [(ngModel)]="modBaseReductionAffix.value" [percent]="true" [min]="0">
+        <span slot="start" class="join-item btn btn-sm justify-start text-left w-40 text-secondary">
+          <img [nwImage]="store.offenderAffixDamageTypeIcon()" class="w-5 h-5" />
+          Base Reduction
+        </span>
+        <button slot="end" class="join-item btn btn-sm btn-square" [tooltip]="tipBase" [preventClick]="true">
+          <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+        </button>
+      </nwb-stacked-value-control>
+    }
+    @if (store.offenderDotIsActive()) {
+      <nwb-stacked-value-control [(ngModel)]="modBaseReductionDot.value" [percent]="true" [min]="0">
+        <span slot="start" class="join-item btn btn-sm justify-start text-left w-40 text-accent">
+          <img [nwImage]="store.offenderDotDamageTypeIcon()" class="w-5 h-5" />
+          Base Reduction
+        </span>
+        <button slot="end" class="join-item btn btn-sm btn-square" [tooltip]="tipBase" [preventClick]="true">
+          <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+        </button>
+      </nwb-stacked-value-control>
+    }
+  </div>
+
+  <div class="fieldset py-0">
+    <nwb-stacked-value-control [(ngModel)]="modABS.value" [percent]="true" [lockPreset]="lockAbsPreset">
+      <span slot="start" class="join-item btn btn-sm justify-start text-left w-40">
+        <img [nwImage]="store.offenderWeaponDamageTypeIcon()" class="w-5 h-5" />
+        ABS
+      </span>
+      <button slot="end" class="join-item btn btn-sm btn-square" [tooltip]="tipABS" [preventClick]="true">
+        <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+      </button>
+    </nwb-stacked-value-control>
+    @if (store.offenderAffixIsActive()) {
+      <nwb-stacked-value-control [(ngModel)]="modABSAffix.value" [percent]="true" [lockPreset]="lockAbsPreset">
+        <span slot="start" class="join-item btn btn-sm justify-start text-left w-40 text-secondary">
+          <img [nwImage]="store.offenderAffixDamageTypeIcon()" class="w-5 h-5" />
+          ABS
+        </span>
+        <button slot="end" class="join-item btn btn-sm btn-square" [tooltip]="tipABS" [preventClick]="true">
+          <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+        </button>
+      </nwb-stacked-value-control>
+    }
+    @if (store.offenderDotIsActive()) {
+      <nwb-stacked-value-control [(ngModel)]="modABSDot.value" [percent]="true" [lockPreset]="lockAbsPreset">
+        <span slot="start" class="join-item btn btn-sm justify-start text-left w-40 text-accent">
+          <img [nwImage]="store.offenderDotDamageTypeIcon()" class="w-5 h-5" />
+          ABS
+        </span>
+        <button slot="end" class="join-item btn btn-sm btn-square" [tooltip]="tipABS" [preventClick]="true">
+          <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+        </button>
+      </nwb-stacked-value-control>
+    }
+  </div>
+
+  <div class="fieldset py-0">
+    <nwb-stacked-value-control [(ngModel)]="modWKN.value" [percent]="true" [lockPreset]="lockWknPreset">
+      <span slot="start" class="join-item btn btn-sm justify-start text-left w-40">
+        <img [nwImage]="store.offenderWeaponDamageTypeIcon()" class="w-5 h-5" />
+        WKN
+      </span>
+      <button slot="end" class="join-item btn btn-sm btn-square" [tooltip]="tipWkn" [preventClick]="true">
+        <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+      </button>
+    </nwb-stacked-value-control>
+    @if (store.offenderAffixIsActive()) {
+      <nwb-stacked-value-control [(ngModel)]="modWKNAffix.value" [percent]="true" [lockPreset]="lockWknPreset">
+        <span slot="start" class="join-item btn btn-sm justify-start text-left w-40 text-secondary">
+          <img [nwImage]="store.offenderAffixDamageTypeIcon()" class="w-5 h-5" />
+          WKN
+        </span>
+        <button slot="end" class="join-item btn btn-sm btn-square" [tooltip]="tipWkn" [preventClick]="true">
+          <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+        </button>
+      </nwb-stacked-value-control>
+    }
+    @if (store.offenderDotIsActive()) {
+      <nwb-stacked-value-control [(ngModel)]="modWKNDot.value" [percent]="true" [lockPreset]="lockWknPreset">
+        <span slot="start" class="join-item btn btn-sm justify-start text-left w-40 text-accent">
+          <img [nwImage]="store.offenderDotDamageTypeIcon()" class="w-5 h-5" />
+          WKN
+        </span>
+        <button slot="end" class="join-item btn btn-sm btn-square" [tooltip]="tipWkn" [preventClick]="true">
+          <nwb-icon [icon]="iconInfo" class="w-4 h-4" />
+        </button>
+      </nwb-stacked-value-control>
+    }
+  </div>
+</div>
+
+<ng-template #tipCrit>
+  <div class="p-2 prose prose-sm leading-tight w-80">
+    <h4>Crit Damage Reduction</h4>
+    <p>This value is simply subtracted from attackers crit damage modifier.</p>
+  </div>
+</ng-template>
+
+<ng-template #tipBase>
+  <div class="p-2 prose prose-sm leading-tight w-80">
+    <h4>Base Damage Reduction</h4>
+    <p>This value is simply subtracted from attackers base damage modifier.</p>
+    <hr class="mt-0 mb-3" />
+    <p class="italic text-xs text-nw-description">
+      Modifiers may impact multiple damage types in-game. This calculator requires modifiers to be set for each
+      calculation path.
+      <br />
+      <br />
+      You may need to replicate the same modifier values for each path:
+      <span class="text-white font-bold">Weapon</span>, <span class="text-secondary font-bold">Affix</span>, and
+      <span class="text-accent font-bold">DoT</span>
+      damage.
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #tipABS>
+  <div class="p-2 prose prose-sm leading-tight w-80">
+    <h4>Fortify / Rend Modifier</h4>
+    <p>
+      This value is utilized to both, to <i class="text-primary">Fortify</i> against current attack (reduce damage
+      taken) and to <i class="text-error">Rend</i> (increase damage taken)
+    </p>
+    <p>Increase the value to simulate <i class="text-primary">Fortify</i>, or add positives values to the stack</p>
+    <p>Decrease the value to simulate <i class="text-error">Rend</i>, or add negative values to the stack</p>
+    <p>
+      Common caps are
+      <code class="mx-0 whitespace-nowrap">
+        [<span class="text-error">-30%</span>, <span class="text-primary">+50%</span>]
+      </code>
+      which can be exceeded in certain scenarios.
+    </p>
+    <hr class="mt-0 mb-3" />
+    <p class="italic text-xs text-nw-description">
+      Modifiers may impact multiple damage types in-game. This calculator requires modifiers to be set for each
+      calculation path.
+      <br />
+      <br />
+      You may need to replicate the same modifier values for each path:
+      <span class="text-white font-bold">Weapon</span>, <span class="text-secondary font-bold">Affix</span>, and
+      <span class="text-accent font-bold">DoT</span>
+      damage.
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #tipWkn>
+  <div class="p-2 prose prose-sm leading-tight w-80">
+    <h4>Weakness</h4>
+    <p>Weakness against current attack. Higher values will increase the damage taken.</p>
+    <hr class="mt-0 mb-3" />
+    <p class="italic text-xs text-nw-description">
+      Modifiers may impact multiple damage types in-game. This calculator requires modifiers to be set for each
+      calculation path.
+      <br />
+      <br />
+      You may need to replicate the same modifier values for each path:
+      <span class="text-white font-bold">Weapon</span>, <span class="text-secondary font-bold">Affix</span>, and
+      <span class="text-accent font-bold">DoT</span>
+      damage.
+    </p>
+  </div>
+</ng-template>

@@ -1,0 +1,42 @@
+@for (entry of entries(); track $index) {
+  <span class="truncate" [title]="entry.key">
+    @for (cell of formatKey(entry); track $index) {
+      @if (cell.component) {
+        <ng-container
+          [ngComponentOutlet]="cell.component"
+          [ngComponentOutletInputs]="cell.componentInputs"
+          [ngComponentOutletInjector]="cell.injector || injector"
+        />
+      } @else if (cell.template) {
+        <ng-container
+          [ngTemplateOutlet]="cell.template"
+          [ngTemplateOutletContext]="{ $implicit: cell.value }"
+          [ngTemplateOutletInjector]="cell.injector || injector"
+        />
+      } @else {
+        {{ cell.value }}
+      }
+    }
+  </span>
+  <span class="overflow-hidden">
+    @for (cell of describeValue(entry); track $index) {
+      @if (cell.component) {
+        <ng-container
+          [ngComponentOutlet]="cell.component"
+          [ngComponentOutletInputs]="cell.componentInputs"
+          [ngComponentOutletInjector]="cell.injector || injector"
+        />
+      } @else if (cell.template) {
+        <ng-container
+          [ngTemplateOutlet]="cell.template"
+          [ngTemplateOutletContext]="{ $implicit: cell.value }"
+          [ngTemplateOutletInjector]="cell.injector || injector"
+        />
+      } @else {
+        {{ cell.value }}
+      }
+    }
+  </span>
+}
+
+<ng-content />

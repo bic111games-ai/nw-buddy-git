@@ -1,0 +1,100 @@
+<div class="flex flex-row justify-between">
+  <span class="label text-accent"> Damage Over Time </span>
+  <span class="label"> Coef {{ dotCoef() | percent: '0.2-2' }} </span>
+</div>
+<button
+  class="join w-full select select-sm border-0 btn btn-sm items-center rounded-md bg-base-200"
+  [cdkMenuTriggerFor]="tplDamageType"
+>
+  <span class="label w-20"> Type </span>
+  <span class="flex-1 flex flex-row items-center justify-center gap-2" [class.text-error]="!!dotPercent.value && !dotType.value">
+    @if (dotType.value) {
+      <img [nwImage]="store.offenderDotDamageTypeIcon()" class="w-5 h-5" />
+      <span> {{ dotType.value }} </span>
+    } @else {
+      <span class="italic"> - none - </span>
+    }
+  </span>
+  <ng-template #tplDamageType>
+    <ul
+      class="mt-1 menu bg-base-200 border border-base-100 rounded-md max-h-[80vh] overflow-y-auto flex flex-col flex-nowrap"
+      cdkMenu
+    >
+      @for (item of dotTypeOptions(); track $index) {
+        <li class="w-80" cdkMenuItem>
+          <button (click)="dotType.value = item.value">
+            <img [nwImage]="item.icon" class="w-5 h-5 ml-2" />
+            <span>{{ item.label }}</span>
+          </button>
+        </li>
+      }
+    </ul>
+  </ng-template>
+</button>
+
+<div class="join w-full">
+  <label class="relative flex-1">
+    <span class="label absolute top-0 left-0 text-white/30 z-10 text-xs scale-80 text-shadow-sm shadow-black">PERCENT</span>
+    <nwb-precision-input
+      class="join-item input border-0 input-sm text-right"
+      [min]="0"
+      [max]="100"
+      [step]="0.1"
+      [stepShift]="10"
+      [stepCtrl]="1"
+      [stepAlt]="0.01"
+      [scale]="100"
+      [unit]="'%'"
+      [(ngModel)]="dotPercent.value"
+      [class.opacity-50]="!dotType.value"
+      [class.text-error]="!dotPercent.value && !!dotType.value"
+    />
+  </label>
+  <label class="relative flex-1">
+    <span class="label absolute top-0 left-0 text-white/30 z-10 text-xs scale-80 text-shadow-sm shadow-black">TIME</span>
+    <nwb-precision-input
+      class="join-item input border-0 input-sm text-right"
+      [min]="0"
+      [max]="100"
+      [step]="1"
+      [stepShift]="10"
+      [stepCtrl]="5"
+      [stepAlt]="0.1"
+      [(ngModel)]="dotDuration.value"
+      [class.opacity-50]="!dotType.value"
+      [class.text-error]="!dotDuration.value && !!dotType.value"
+    />
+  </label>
+  <label class="relative flex-1">
+    <span class="label absolute top-0 left-0 text-white/30 z-10 text-xs scale-80 text-shadow-sm shadow-black">RATE</span>
+    <nwb-precision-input
+      class="join-item input border-0 input-sm text-right"
+      [min]="0"
+      [max]="100"
+      [step]="1"
+      [stepShift]="10"
+      [stepCtrl]="5"
+      [stepAlt]="0.1"
+      [(ngModel)]="dotRate.value"
+      [class.opacity-50]="!dotType.value"
+      [class.text-error]="!dotRate.value && !!dotType.value"
+    />
+  </label>
+</div>
+
+<span class="join w-full">
+  <button class="join-item btn btn-sm w-20 justify-start text-left">Potency</button>
+  <nwb-precision-input
+    class="join-item flex-1 input border-0 input-sm text-right"
+    [min]="0"
+    [max]="100"
+    [step]="0.1"
+    [stepShift]="10"
+    [stepCtrl]="1"
+    [stepAlt]="0.01"
+    [scale]="100"
+    [unit]="'%'"
+    [(ngModel)]="dotPotency.value"
+    [class.opacity-50]="!dotType.value"
+  />
+</span>

@@ -1,0 +1,18 @@
+:host {
+  --nwb-vg-cols: 1;
+  --nwb-vg-rows: 1;
+  --nwb-vg-height: 50px;
+  scrollbar-gutter: stable;
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(var(--nwb-vg-cols), minmax(0, 1fr));
+    grid-template-rows: repeat(var(--nwb-vg-rows), var(--nwb-vg-height));
+  }
+  .grid-section {
+    grid-column-start: 1;
+    grid-column-end: calc(var(--nwb-vg-cols) + 1);
+  }
+  ::ng-deep .cdk-virtual-scroll-content-wrapper {
+    max-width: 100% !important;
+  }
+}

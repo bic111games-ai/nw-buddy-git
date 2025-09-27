@@ -1,0 +1,99 @@
+<ion-split-pane contentId="editor">
+  <ion-menu contentId="editor" class="min-w-96 max-w-screen-lg order-3" [nwbSplitPane]="gutter">
+    <nwb-assets-sidebar class="ion-page" />
+  </ion-menu>
+  <nwb-split-gutter class="order-2" #gutter="gutter" />
+  <div class="ion-page order-1" id="editor">
+    <ion-header class="bg-base-300">
+      <ion-toolbar>
+        <ion-title>Pak Browser</ion-title>
+        @if (tabs()?.length) {
+          <div slot="end" class="join">
+            @for (tab of tabs(); track $index) {
+              <button
+                class="join-item btn btn-ghost"
+                [class.text-primary]="tab.active"
+                [routerLink]="'.'"
+                [queryParams]="{ tab: tab.id }"
+                [queryParamsHandling]="'merge'"
+              >
+                <nwb-icon [icon]="tab.icon" class="w-4 h-4" />
+              </button>
+            }
+          </div>
+        }
+      </ion-toolbar>
+    </ion-header>
+    @if (source(); as source) {
+      <div class="flex flex-row h-full">
+        @if (outlineContent(); as outline) {
+          <div class="flex flex-col">
+            <nwb-object-tree
+              [items]="outline.items"
+              [adapter]="outline.adapter"
+              [open]="true"
+              class="h-full w-96 flex-fill"
+              (selected)="handleEntitySelection($event)"
+            >
+              <ng-template [nwbObjectTreeLabel] let-item>
+                {{ item.name }}
+                @if (isEntityInTheWorld(item)) {
+                  <span class="badge badge-xs badge-primary tooltip" data-tip="Has PositionInTheWorld component"></span>
+                }
+                @if (!isEntityRuntimeActive(item)) {
+                  <span class="badge badge-xs badge-error tooltip" data-tip="isRuntimeActive is false"></span>
+                }
+              </ng-template>
+            </nwb-object-tree>
+            @if (entityComponents(); as list) {
+              <div class="flex-none flex flex-col gap-1 bg-base-300 p-1">
+                <label>Components:</label>
+                @for (item of list; track $index) {
+                  <button class="btn btn-sm bt-ghost justify-start cursor-default" (click)="handleComponentSelection(item)">
+                    {{ item | nwHumanize }}
+                  </button>
+                }
+              </div>
+            }
+          </div>
+        }
+        <ion-content [scrollY]="false">
+          <div class="flex flex-row h-full">
+            @switch (previewType()) {
+              @case ('3d') {
+                <!-- <nwb-game-viewer class="h-full flex-1">
+                  <nwb-game-viewer-stats slot="toolbar" />
+                  <nwb-game-viewer-model [url]="modelContent()[0].url" [rootUrl]="modelContent()[0].rootUrl" />
+                </nwb-game-viewer> -->
+                <nwb-game-viewer class="h-full flex-1" engine="threejs">
+                  <nwb-game-viewer-stats slot="toolbar" />
+                  <nwb-game-viewer-model [url]="modelContent()[0].url" [rootUrl]="modelContent()[0].rootUrl" />
+                </nwb-game-viewer>
+              }
+              @case ('txt') {
+                <nwb-code-editor
+                  class="ion-page"
+                  [nwbMonacoSliceExtension]=""
+                  [ngModel]="textContent.value()"
+                  [language]="source.textType"
+                  [disabled]="true"
+                  (fileClicked)="handleFileSelection($event.file, $event.newTab)"
+                />
+              }
+              @case ('img') {
+                <picture class="block relative">
+                  <img [src]="source.baseUrl + source.imagePath" class="object-scale-down" #img />
+                  @if (img.naturalWidth) {
+                    <span class="absolute top-0 left-0 p-2 font-mono">
+                      {{ img.naturalWidth }}x{{ img.naturalHeight }}
+                    </span>
+                  }
+                </picture>
+              }
+            }
+          </div>
+        </ion-content>
+      </div>
+    }
+  </div>
+</ion-split-pane>

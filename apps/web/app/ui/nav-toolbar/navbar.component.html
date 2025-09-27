@@ -1,0 +1,17 @@
+<ul class="flex flex-row flex-nowrap flex-1 overflow-x-auto scrollbar-hide">
+  <ng-container *ngTemplateOutlet="menuTemplate; context: ctxHorizontal" />
+</ul>
+<ul class="flex flex-row flex-nowrap flex-none">
+  <li>
+    <button class="btn btn-ghost btn-square" [cdkMenuTriggerFor]="tplMenu" [cdkMenuTriggerData]="">
+      <nwb-icon [icon]="svgEllipsisVertical" class="w-4 h-4" />
+    </button>
+  </li>
+  <ng-container *ngTemplateOutlet="buttonsTemplate; context: ctxHorizontal" />
+</ul>
+
+<ng-template #tplMenu>
+  <ul class="my-1 menu menu-compact bg-base-200 border border-base-100 rounded-md shadow-lg p-0"  (click)="closeMenu()" cdkMenu>
+    <ng-container *ngTemplateOutlet="menuTemplate; context: ctxVertical" />
+  </ul>
+</ng-template>

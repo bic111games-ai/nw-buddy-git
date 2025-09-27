@@ -1,0 +1,52 @@
+<ion-header >
+  <ion-toolbar class="ion-color ion-color-black rounded-t-md">
+    <ion-title>{{ title }}</ion-title>
+    <div slot="primary" class="join">
+      @if (service.canToggleMode()) {
+        <button class="join-item btn btn-square btn-ghost" [nwbDataViewToggle]></button>
+      }
+      @if (service.isTableSupported()) {
+        <button
+          class="join-item btn btn-square btn-ghost"
+          [nwbDataViewOptionsMenu]
+          [disabled]="!service.isTableActive()"
+        ></button>
+      }
+    </div>
+    <nwb-quicksearch-input slot="end" [autofocus]="true" class="mr-1" />
+  </ion-toolbar>
+</ion-header>
+<ion-content class="bg-base-200">
+  @if (service.isGridActive()) {
+    <nwb-virtual-grid
+      [enableQuickfilter]="true"
+      [selection]="selection"
+      [data]="service.categoryItems$ | async"
+      [options]="service.virtualOptions"
+      [identifyBy]="service.entityIdGetter"
+      (selection$)="onSelectionChange($event)"
+      (cellDoubleClicked)="commit()"
+    />
+  } @else if (service.isTableActive()) {
+    <nwb-table-grid
+      (ready$)="service.onTableReady($event)"
+      [enableQuickfilter]="true"
+      [selection]="selection"
+      [data]="service.categoryItems$ | async"
+      [options]="service.tableGridOptions"
+      [identifyBy]="service.entityIdGetter"
+      [persistKey]="persistKey"
+      (selectionChanged$)="onSelectionChange($event.ids)"
+      (rowDoubleClicked$)="commit()"
+    />
+  }
+</ion-content>
+<ion-footer class="rounded-b-md">
+  <ion-toolbar class="ion-color ion-color-base-300">
+    <div class="join px-1 w-full sm:w-auto" slot="end">
+      <button class="join-item flex-1 btn btn-ghost sm:min-w-28" (click)="close()">Cancel</button>
+      <button class="join-item flex-1 btn btn-ghost sm:min-w-28" (click)="clear()">Clear selection</button>
+      <button class="join-item flex-1 btn btn-ghost text-primary sm:min-w-28" (click)="commit()">OK</button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

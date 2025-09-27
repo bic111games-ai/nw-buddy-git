@@ -1,0 +1,180 @@
+<ion-content [scrollY]="false">
+  <ion-split-pane
+    [when]="hasOpponent()"
+    [contentId]="'gearset-content'"
+    class="transition-transform"
+    style="--side-min-width: 50%; --side-max-width: 50%"
+    [ngClass]="{
+      'min-w-[200vw] lg:min-w-0': hasOpponent() && !isLarge(),
+      '-translate-x-[100vw]': isTabOpponent() && !isLarge(),
+    }"
+  >
+    <ng-container [ngTemplateOutlet]="tplPlayerContent" />
+
+    <ion-menu class="order-2" contentId="gearset-content">
+      @if (hasOpponent()) {
+        <ng-container [ngTemplateOutlet]="tplOpponentContent" />
+      }
+    </ion-menu>
+  </ion-split-pane>
+</ion-content>
+@if (hasOpponent() && !isLarge()) {
+  <ion-footer>
+    <ion-segment [value]="isTabOpponent()">
+      <ion-segment-button
+        [value]="false"
+        [routerLink]="['.']"
+        [replaceUrl]="true"
+        [queryParams]="{ tab: null }"
+        [queryParamsHandling]="'merge'"
+      >
+        Player
+      </ion-segment-button>
+      <ion-segment-button
+        [value]="true"
+        [routerLink]="['.']"
+        [replaceUrl]="true"
+        [queryParams]="{ tab: 'vs' }"
+        [queryParamsHandling]="'merge'"
+      >
+        Opponent
+      </ion-segment-button>
+    </ion-segment>
+  </ion-footer>
+}
+
+<ng-template #tplPlayerContent>
+  <div
+    class="ion-page order-1"
+    id="gearset-content"
+    nwbGearsetHost
+    #playerHost="gearsetHost"
+    [gearset]="playerGearset()"
+    [isLoading]="playerIsLoading()"
+    [opponent]="opponentGearset()"
+  >
+    <ion-header class="bg-base-300 embed-hidden">
+      <ion-toolbar>
+        <nwb-gearset-toolbar [mode]="'player'" />
+      </ion-toolbar>
+    </ion-header>
+    <ion-content [scrollY]="false" [nwbSizeObserver] #size="size">
+      <ion-split-pane
+        [contentId]="'player'"
+        style="--side-min-width: 360px; --side-max-width: 400px"
+        [when]="playerHost.showCalculator() && size.width() >= 768"
+      >
+        <ion-menu
+          [menuId]="'player-menu'"
+          [contentId]="'player'"
+          [side]="'end'"
+          [type]="'push'"
+          class="order-2"
+          style="--min-width: min(100vw, 360px)"
+        >
+          <ion-content class="bg-black">
+            <nwb-damage-calculator [player]="player()" [opponent]="opponent()" />
+          </ion-content>
+        </ion-menu>
+        <div class="ion-page order-1" id="player">
+          @if (size.width() < 768) {
+            <ion-header class="bg-base-300">
+              <ion-toolbar>
+                <ion-segment>
+                  <ion-segment-button (click)="playerGrid.scrollToMain()" class="min-w-12">
+                    <nwb-icon [icon]="iconTabMain" class="w-6 h-6" />
+                  </ion-segment-button>
+                  <ion-segment-button (click)="playerGrid.scrollToStats()" class="min-w-12">
+                    <nwb-icon [icon]="iconTabStats" class="w-6 h-6" />
+                  </ion-segment-button>
+                  <ion-segment-button (click)="playerGrid.scrollToSkill1()" class="min-w-12">
+                    <nwb-icon [icon]="iconTabSkill" class="w-6 h-6" />
+                  </ion-segment-button>
+                  <ion-segment-button (click)="playerGrid.scrollToSkill2()" class="min-w-12">
+                    <nwb-icon [icon]="iconTabSkill" class="w-6 h-6" />
+                  </ion-segment-button>
+                  <ion-segment-button (click)="playerGrid.scrollToGear()" class="min-w-12">
+                    <nwb-icon [icon]="iconTabGear" class="w-6 h-6" />
+                  </ion-segment-button>
+                </ion-segment>
+                <ion-buttons slot="end">
+                  <ion-menu-button menu="player-menu" [autoHide]="false" />
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+          }
+          <ion-content class="ion-p-4">
+            <nwb-gearset-grid #playerGrid nwbEmbedHeight />
+          </ion-content>
+        </div>
+      </ion-split-pane>
+    </ion-content>
+  </div>
+</ng-template>
+
+<ng-template #tplOpponentContent>
+  <div
+    class="ion-page"
+    nwbGearsetHost
+    #opponentHost="gearsetHost"
+    [gearset]="opponentGearset()"
+    [isLoading]="opponentIsLoading()"
+    [opponent]="playerGearset()"
+  >
+    <ion-header class="bg-base-300">
+      <ion-toolbar>
+        <nwb-gearset-toolbar [mode]="'opponent'" />
+      </ion-toolbar>
+    </ion-header>
+    <ion-content [scrollY]="false" [nwbSizeObserver] #size="size">
+      <ion-split-pane
+        [contentId]="'opponent'"
+        style="--side-min-width: 360px; --side-max-width: 400px"
+        [when]="opponentHost.showCalculator() && size.width() >= 768"
+      >
+        <ion-menu
+          [menuId]="'opponent-menu'"
+          [contentId]="'opponent'"
+          [type]="'push'"
+          class="order-1"
+          style="--min-width: min(100vw, 360px)"
+        >
+          <ion-content class="bg-black">
+            <nwb-damage-calculator [opponent]="player()" [player]="opponent()" />
+          </ion-content>
+        </ion-menu>
+        <div class="ion-page order-2" id="opponent">
+          @if (hasOpponent() && size.width() < 768) {
+            <ion-header class="bg-base-300">
+              <ion-toolbar>
+                <ion-segment>
+                  <ion-segment-button (click)="oponentGrid.scrollToMain()">
+                    <nwb-icon [icon]="iconTabMain" class="w-6 h-6" />
+                  </ion-segment-button>
+                  <ion-segment-button (click)="oponentGrid.scrollToStats()">
+                    <nwb-icon [icon]="iconTabStats" class="w-6 h-6" />
+                  </ion-segment-button>
+                  <ion-segment-button (click)="oponentGrid.scrollToSkill1()">
+                    <nwb-icon [icon]="iconTabSkill" class="w-6 h-6" />
+                  </ion-segment-button>
+                  <ion-segment-button (click)="oponentGrid.scrollToSkill2()">
+                    <nwb-icon [icon]="iconTabSkill" class="w-6 h-6" />
+                  </ion-segment-button>
+                  <ion-segment-button (click)="oponentGrid.scrollToGear()">
+                    <nwb-icon [icon]="iconTabGear" class="w-6 h-6" />
+                  </ion-segment-button>
+                </ion-segment>
+                <ion-buttons slot="start">
+                  <ion-menu-button menu="opponent-menu" [autoHide]="false" />
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+          }
+          <ion-content class="ion-p-4">
+            <nwb-gearset-grid #oponentGrid />
+          </ion-content>
+        </div>
+      </ion-split-pane>
+    </ion-content>
+  </div>
+</ng-template>

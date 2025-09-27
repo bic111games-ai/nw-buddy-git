@@ -1,0 +1,5 @@
+<nwb-expression-tree-editor
+  [ngModel]="expression$ | async"
+  (ngModelChange)="patchState({ expression: $event })"
+  [knownFields]="knownFields$ | async"
+/>

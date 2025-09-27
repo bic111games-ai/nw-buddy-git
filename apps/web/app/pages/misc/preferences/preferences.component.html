@@ -1,0 +1,313 @@
+<ion-content class="ion-p-4">
+  <div class="grid grid-cols-fill-sm gap-4 w-auto max-w-4xl mx-auto">
+    <div class="bg-base-300 rounded-md p-4 prose prose-sm row-span-2">
+      @if (backend.isEnabled()) {
+        <h3 class="uppercase">Account</h3>
+        @if (signedIn()) {
+          <p>
+            You are signed in as <b class="uppercase text-success"> {{ session().name }} </b>
+          </p>
+          @if (!backend.isOnline()) {
+            <div class="alert alert-error mb-4">
+              The session could net be verified, the server is probably offline or not reachable. You can still use the
+              app. The data will be stored locally and synced once the server is back online.
+            </div>
+          }
+        } @else {
+          <p>You are not signed, using <b class="text-primary">local</b> data</p>
+        }
+
+        @if (signedIn()) {
+          <div class="form-control w-full">
+            <button class="btn w-full" (click)="backend.signOut()">Sign out</button>
+          </div>
+        } @else {
+          <div class="form-control w-full">
+            <button class="btn w-full" (click)="backend.signIn()">Sign in</button>
+          </div>
+        }
+      }
+      <h3 class="uppercase">Local database</h3>
+      @if (signedIn()) {
+        <p>Your account data is <b class="text-success">synced</b> with a remote database.</p>
+        <p>
+          Any <b class="text-warning">local</b> data created before signing in is still available and can be imported
+          into your account.
+        </p>
+      } @else {
+        <p>
+          Your <b class="text-warning">local</b> data, is stored in a browser database on your device. This can be wiped
+          when site cache is cleared or the device has memory pressure. To prevent data loss, you can export your data
+          to a file and import it later.
+        </p>
+      }
+      <table class="table table-zebra table-xs">
+        <tbody>
+          <tr>
+            <td></td>
+            <td><i class="text-primary">Local</i> data</td>
+            @if (signedIn()) {
+              <td><i class="text-success">Synced</i> data</td>
+            }
+          </tr>
+          <tr>
+            <td>Characters</td>
+            <td>{{ countLocal.value().characters }}</td>
+            @if (signedIn()) {
+              <td>{{ countUser.value().characters }}</td>
+            }
+          </tr>
+          <tr>
+            <td>Skill trees</td>
+            <td>{{ countLocal.value().skillTrees }}</td>
+            @if (signedIn()) {
+              <td>{{ countUser.value().skillTrees }}</td>
+            }
+          </tr>
+          <tr>
+            <td>Gearsets</td>
+            <td>{{ countLocal.value().gearsets }}</td>
+            @if (signedIn()) {
+              <td>{{ countUser.value().gearsets }}</td>
+            }
+          </tr>
+          <tr>
+            <td>Inventory Items</td>
+            <td>{{ countLocal.value().items }}</td>
+            @if (signedIn()) {
+              <td>{{ countUser.value().items }}</td>
+            }
+          </tr>
+          <tr>
+            <td>Bookmarks</td>
+            <td>{{ countLocal.value().bookmarks }}</td>
+            @if (signedIn()) {
+              <td>{{ countUser.value().bookmarks }}</td>
+            }
+          </tr>
+          <tr>
+            <td>Table settings</td>
+            <td>{{ countLocal.value().presets }}</td>
+            @if (signedIn()) {
+              <td>{{ countUser.value().presets }}</td>
+            }
+          </tr>
+        </tbody>
+      </table>
+      @if (signedIn()) {
+        <fieldset class="fieldset">
+          <div>
+            <button class="btn w-full" (click)="importToAccount()">Import</button>
+            <span class="fieldset-label"> Imports any local data into your account </span>
+          </div>
+          <div>
+            <button class="btn w-full" (click)="refreshAccountData()">Refresh</button>
+            <span class="fieldset-label">Deletes your account data on this device and restores it from the server</span>
+          </div>
+          <div>
+            <button class="btn w-full text-error" (click)="deleteAccountData()">Delete</button>
+            <span class="fieldset-label">Deletes your account data on this device and on the server</span>
+          </div>
+        </fieldset>
+      } @else {
+        <fieldset class="fieldset">
+          <div>
+            <input type="text" class="input input-bordered" [(ngModel)]="projectName" />
+            <span class="fieldset-label"> Export file name </span>
+          </div>
+          <div>
+            <button class="btn w-full mt-4" (click)="exportPreferences()">Export</button>
+            <span class="fieldset-label"> Exports user data e.g. gearsets, skill trees etc .</span>
+          </div>
+          <div>
+            <button class="btn w-full mt-4" (click)="importPreferences()">Import</button>
+            <span class="fieldset-label"> Imports previously exported user data </span>
+          </div>
+          <div>
+            <button class="btn w-full mt-4" (click)="dropTables()">Clear</button>
+            <span class="fieldset-label"> Clears the local database </span>
+          </div>
+        </fieldset>
+      }
+    </div>
+
+    <div class="bg-base-300 rounded-md p-4 prose prose-sm">
+      <h3 class="uppercase">Market prices</h3>
+      <p>Previously imported market prices can be cleared here or re-imported here.</p>
+      <fieldset class="fieldset">
+        <div>
+          <nwb-price-importer-button class="btn w-full" [icon]="false"> Import </nwb-price-importer-button>
+          <span class="fieldset-label">Import prices from file or a website</span>
+        </div>
+        <div>
+          <button class="btn w-full" (click)="clearPrices()">Clear</button>
+          <span class="fieldset-label">Clears all item prices</span>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="bg-base-300 rounded-md p-4 prose prose-sm">
+      <h3 class="uppercase">Datasheets History</h3>
+      <p>To access the history of datasheets, you need to provide a git access token and select a repository.</p>
+      <fieldset class="fieldset">
+        <div>
+          <label class="input w-full">
+            <span class="label">Access Token</span>
+            <input
+              type="text"
+              [ngModel]="pref.gitAccessToken.observe() | async"
+              (ngModelChange)="pref.gitAccessToken.set($event)"
+              [placeholder]="'Git token'"
+            />
+          </label>
+          <span class="fieldset-label">
+            <span>
+              Your git access token that will be used to fetch diff data from github API. Create your token
+              <a href="https://github.com/settings/tokens" target="_blank" class="link link-primary">here</a>.
+            </span>
+          </span>
+        </div>
+        @let hasToken = !!(pref.gitAccessToken.observe() | async);
+        @let hasPreset = !!(pref.nwDataRepoPreset.observe() | async);
+        @if (hasToken) {
+          <label class="select w-full">
+            <span class="label">Repository</span>
+            <select
+              class="w-full"
+              [ngModel]="pref.nwDataRepoPreset.observe() | async"
+              (ngModelChange)="onHistoryPresetChange($event)"
+            >
+              <option value="nw-buddy-data-live">NW Buddy Data: Live</option>
+              <option value="nw-buddy-data-ptr">NW Buddy Data: PTR</option>
+              <option value="new-world-tools-live">New World Tools: Live</option>
+              <option value="">Custom</option>
+            </select>
+          </label>
+
+          @if (!hasPreset) {
+            <div>
+              <label class="input w-full">
+                <span class="label">URL</span>
+                <input
+                  type="text"
+                  [ngModel]="pref.nwDataRepo.observe() | async"
+                  (ngModelChange)="pref.nwDataRepo.set($event || undefined)"
+                />
+              </label>
+              <span class="fieldset-label"> Git repository url with branch name and path to datasheets folder </span>
+            </div>
+          }
+          <div>
+            <label class="input w-full">
+              <span class="label">Commits</span>
+              <input
+                type="number"
+                [ngModel]="pref.nwDataRepoUseLimit.observe() | async"
+                (ngModelChange)="pref.nwDataRepoUseLimit.set($event)"
+              />
+            </label>
+            <span class="fieldset-label"> Maxumun number of history commits to evaluate </span>
+          </div>
+          @if (!hasPreset) {
+            <label class="fieldset-label">
+              <input
+                type="checkbox"
+                class="toggle toggle-primary"
+                [ngModel]="pref.nwDataRepoUseTags.observe() | async"
+                (ngModelChange)="pref.nwDataRepoUseTags.set($event)"
+              />
+              <span>Use only tagged commits</span>
+            </label>
+
+            <label class="fieldset-label">
+              <input
+                type="checkbox"
+                class="toggle toggle-primary"
+                [ngModel]="pref.nwDataRepoUseFiles.observe() | async"
+                (ngModelChange)="pref.nwDataRepoUseFiles.set($event)"
+              />
+              <span>Datasheets use original file name (not table type)</span>
+            </label>
+          }
+        }
+      </fieldset>
+    </div>
+    <div class="bg-base-300 rounded-md p-4 prose prose-sm">
+      <h3 class="uppercase">IPFS</h3>
+      <p>The IPFS system is used in offline mode for sharing build links with other users.</p>
+      <fieldset class="fieldset">
+        <label class="input w-full">
+          <span class="label">Gateway</span>
+          <input type="text" [(ngModel)]="ipfsGateway" />
+        </label>
+        <span class="fieldset-label">
+          <span>
+            The preferred IPFS hostname to use when downloading shared content. Check public gateways
+            <a href="https://ipfs.github.io/public-gateway-checker/" target="_blank" class="link link-primary">here</a>.
+          </span>
+        </span>
+      </fieldset>
+    </div>
+    <div class="bg-base-300 rounded-md p-4 prose prose-sm">
+      <h3 class="uppercase">App Configuration</h3>
+
+      <table class="table table-zebra table-xs">
+        <tbody>
+          <tr>
+            <td>Sync backend</td>
+            <td>
+              @if (backend.isEnabled()) {
+                <span class="text-success">Enabled</span>
+              } @else {
+                <span class="text-error">Disabled</span>
+              }
+            </td>
+          </tr>
+          <tr>
+            <td>Environment name</td>
+            <td>
+              {{ envName }}
+            </td>
+          </tr>
+          <tr>
+            <td>Branch</td>
+            <td>
+              {{ branch }}
+            </td>
+          </tr>
+          <tr>
+            <td>Version</td>
+            <td>
+              {{ version }}
+            </td>
+          </tr>
+          <tr>
+            <td>CDN</td>
+            <td>
+              {{ cdnUrl }}
+            </td>
+          </tr>
+          <tr>
+            <td>Models</td>
+            <td>
+              {{ modelsUrl }}
+            </td>
+          </tr>
+          <tr>
+            <td>Tiles</td>
+            <td>
+              {{ tilesUrl }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="form-control w-full">
+        <label class="cursor-pointer label">
+          <span class="label-text">Collapse sidebar permanently</span>
+          <input type="checkbox" class="toggle toggle-primary" [(ngModel)]="collapseMenu" />
+        </label>
+      </div>
+    </div>
+  </div>
+</ion-content>

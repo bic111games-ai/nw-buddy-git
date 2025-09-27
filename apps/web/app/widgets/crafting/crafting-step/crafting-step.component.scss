@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  position: relative;
+
+  nwb-tree-node-toggle {
+    display: none;
+  }
+
+  nwb-crafting-step {
+    nwb-tree-node-toggle {
+      display: inline-flex;
+    }
+    .steps-container {
+      margin-left: 15px;
+      nwb-crafting-step {
+        margin-left: 15px;
+      }
+    }
+  }
+
+}

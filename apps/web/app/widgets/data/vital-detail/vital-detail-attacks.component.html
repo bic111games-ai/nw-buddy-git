@@ -1,0 +1,133 @@
+@if (hasError()) {
+  <div swap class="alert shadow-lg bg-base-100">
+    <nwb-icon [icon]="errorIcon" class="w-6 h-6 text-error self-start" />
+    <div>
+      <h3 class="font-bold">Error</h3>
+      <div class="text-xs">Failed to load data</div>
+    </div>
+  </div>
+} @else if (!isLoaded()) {
+  @defer (on timer(50ms)) {
+    <div class="flex flex-col gap-1 mb-2">
+      <div class="skeleton bg-base-100 w-28 self-center h-6"></div>
+      <div class="flex flex-col gap-1 mb-2">
+        <div class="skeleton bg-base-100 w-24 h-4"></div>
+        <div class="flex flex-row flex-wrap gap-1">
+          <div class="skeleton bg-base-100 w-16 h-4"></div>
+          <div class="skeleton bg-base-100 w-16 h-4"></div>
+          <div class="skeleton bg-base-100 w-16 h-4"></div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-1 mb-2">
+        <div class="skeleton bg-base-100 w-24 h-4"></div>
+        <div class="flex flex-row flex-wrap gap-1">
+          <div class="skeleton bg-base-100 w-16 h-4"></div>
+          <div class="skeleton bg-base-100 w-16 h-4"></div>
+          <div class="skeleton bg-base-100 w-16 h-4"></div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-1 mb-2">
+        <div class="skeleton bg-base-100 w-24 h-4"></div>
+        <div class="flex flex-row flex-wrap gap-1">
+          <div class="skeleton bg-base-100 w-16 h-4"></div>
+          <div class="skeleton bg-base-100 w-16 h-4"></div>
+          <div class="skeleton bg-base-100 w-16 h-4"></div>
+        </div>
+      </div>
+    </div>
+  }
+} @else if (!tables()?.length) {
+  <!-- <div>
+    <div class="italic opacity-45 flex text-center">- no data -</div>
+  </div> -->
+  <div swap class="alert shadow-lg bg-base-100">
+    <nwb-icon [icon]="infoIcon" class="w-6 h-6 text-info self-start" />
+    <div>
+      <h3 class="font-bold">No attacks</h3>
+      <div class="text-xs">-</div>
+    </div>
+  </div>
+} @else {
+  <div swap>
+    @for (table of tables(); track $index) {
+      <div class="flex flex-col gap-1 mb-2">
+        <a
+          class="text-center capitalize font-bold link-hover text-nw-description text-lg"
+          [routerLink]="['damage'] | nwLink: table.id"
+        >
+          {{ table.name | nwHumanize }}
+        </a>
+        @for (row of table.rows; track $index) {
+          <div class="flex flex-col gap-1 mb-2">
+            <div class="leading-tight font-bold">
+              <a class="link-hover" [routerLink]="['damage'] | nwLink" [queryParams]="{ search: row.DamageID }">
+                {{ row.AttackName }}
+              </a>
+            </div>
+            <div class="flex flex-row flex-wrap gap-1">
+              @if (row.AttackType; as text) {
+                <span
+                  class="badge badge-sm/50"
+                  [class.badge-error]="text === 'Heavy'"
+                  [class.badge-success]="text === 'Light'"
+                  [class.badge-secondary]="text === 'Magic'"
+                >
+                  {{ text }}</span
+                >
+              }
+              @if (row.IsRanged) {
+                <span class="badge badge-sm badge-info">Ranged</span>
+              }
+              @if (!row.Secondary && row.Damage) {
+                <span class="badge badge-sm badge-primary cursor-help" [tooltip]="tipDamage" [tooltipClass]="'p-2'">
+                  <img [nwImage]="row.Primary.Icon" class="w-4 h-4 flex-none aspect-square mr-1 filter brightness-0" />
+                  {{ row.Damage | number: '0.0-0' }}
+                  <ng-template #tipDamage>
+                    {{ row.Primary.Type | nwText }}
+                  </ng-template>
+                </span>
+              }
+              @if (row.Secondary) {
+                @if (row.Damage) {
+                  <span class="badge badge-sm badge-primary">
+                    {{ row.Damage | number: '0.0-0' }}
+                  </span>
+                }
+
+                <span class="badge badge-sm cursor-help" [tooltip]="tipPrimary" [tooltipClass]="'p-2'">
+                  <img [nwImage]="row.Primary.Icon" class="w-4 h-4 flex-none aspect-square mr-1" />
+                  {{ row.Primary.Value | number: '0.0-0' }}
+                  <ng-template #tipPrimary>
+                    {{ row.Primary.Percent | percent }} as {{ row.Primary.Type | nwText }}
+                  </ng-template>
+                </span>
+
+                <span class="badge badge-sm cursor-help" [tooltip]="tipSecondary" [tooltipClass]="'p-2'">
+                  <img [nwImage]="row.Secondary.Icon" class="w-4 h-4 flex-none aspect-square mr-1" />
+                  {{ row.Secondary.Value | number: '0.0-0' }}
+                  <ng-template #tipSecondary>
+                    {{ row.Secondary.Percent | percent }} as {{ row.Secondary.Type | nwText }}
+                  </ng-template>
+                </span>
+              }
+              @for (item of row.AoeEffects; track $index) {
+                <a
+                  class="badge badge-sm link-hover"
+                  [tooltip]="tipEffect"
+                  [tooltipClass]="'p-2'"
+                  [routerLink]="['status-effect', item.StatusID] | nwLink"
+                >
+                  <img [nwImage]="item.Icon" class="w-4 h-4 flex-none aspect-square mr-1" />
+                  {{ item.Label | nwText }}
+                  <ng-template #tipEffect>
+                    <nwb-status-effect-detail [effectId]="item.StatusID" />
+                  </ng-template>
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+}

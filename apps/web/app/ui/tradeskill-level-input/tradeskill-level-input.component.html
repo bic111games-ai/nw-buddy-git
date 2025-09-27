@@ -1,0 +1,36 @@
+<div class="flex-1 relative">
+  <picture class="opacity-20 absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+    <img [nwImage]="icon" class="w-3/5 h-3/5 object-contain" />
+  </picture>
+  <div class="absolute top-0 left-0 right-0 bottom-0 z-10 flex flex-col items-center justify-center">
+    <div class="aspect-square h-full font-caslon">
+      <input
+        #input
+        min="0"
+        type="number"
+        [attr.max]="maxLevel"
+        class="
+          input
+          input-ghost
+          bg-transparent
+          focus:bg-transparent
+          focus:outline-none
+          h-full
+          w-full
+          p-0
+          text-center
+          text-4xl
+          appearance-none
+          cursor-pointer
+          text-nw-description
+        "
+        placeholder="0"
+        [(ngModel)]="modelValue"
+        (focus)="isSliderOpen = true"
+      />
+    </div>
+  </div>
+</div>
+<h2 class="p-2 pt-0 text-center font-semibold text-ellipsis overflow-hidden opacity-80 relative -top-2">
+  <span [nwText]="label" class="whitespace-nowrap"></span>
+</h2>

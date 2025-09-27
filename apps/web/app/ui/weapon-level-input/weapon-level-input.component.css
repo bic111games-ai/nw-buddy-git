@@ -1,0 +1,9 @@
+@reference '../../../style.css';
+
+:host {
+  @apply outline-0 outline-transparent focus-within:outline-primary focus-within:outline-2;
+}
+
+img {
+  filter: grayscale(1) sepia(0.5);
+}

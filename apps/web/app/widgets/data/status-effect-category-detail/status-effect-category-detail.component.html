@@ -1,0 +1,23 @@
+@if (store.table(); as table) {
+  <table class="table table-xs">
+    <tr>
+      <th>Limits Table</th>
+      @for (col of table.cols; track $index) {
+        <th>
+          <span class="badge badge-sm badge-secondary">{{ col }}</span>
+        </th>
+      }
+    </tr>
+    @for (row of table.rows; track $index) {
+      <tr>
+        <th>{{ row }}</th>
+        @for (col of table.cols; track $index) {
+          <th class="text-center" [class.text-primary]="col === store.categoryId()">
+            <pre>{{ table.data[row][col] }}</pre>
+          </th>
+        }
+      </tr>
+    }
+  </table>
+}
+<ng-content/>

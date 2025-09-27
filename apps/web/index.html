@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>New World Buddy</title>
+    <base href="/" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:title" content="New World Buddy" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.nw-buddy.de" />
+    <meta property="og:description" content="A sidekick app for New World. Open source. Free to use. No Ads." />
+    <meta property="og:image" content="https://www.nw-buddy.de/assets/icons/favicon.512x512.png" />
+    <link rel="preload" href="assets/loaders/nwlogo.png" as="image" type="image/png" />
+    <link rel="preload" href="assets/loaders/basicscreenrune1.png" as="image" type="image/png" />
+    <link rel="preload" href="assets/loaders/basicscreenrune2.png" as="image" type="image/png" />
+    <link rel="preload" href="assets/loaders/basicscreenrune3.png" as="image" type="image/png" />
+
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
+    <meta name="google-site-verification" content="K149Y9uZBjHw3ZGTgxbEQ5EMYNixwLyWb60-lgwD3jY" />
+    <style>
+      body {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body class="dark font-sans" data-theme="nwbuddy">
+    <nw-buddy-frame class="h-full z-[0]"></nw-buddy-frame>
+    <div id="skeleton-loader" class="absolute inset-0 z-[1] flex flex-col opacity-100 transition-opacity">
+      <div class="h-0! h-12 bg-black transition-all duration-200 z-[3]"></div>
+      <div data-submenu="true" class="h-0! h-12 bg-base-300 transition-all delay-200 duration-200 shadow z-[2]"></div>
+      <div class="flex-1 flex flex-row bg-base-200 z-[1]">
+        <div
+          data-sidemenu="true"
+          class="h-full w-0! w-[270px] bg-base-300 transition-all delay-[400ms] duration-200"
+        ></div>
+        <div class="h-full flex-1 relative flex items-center justify-center">
+          <picture class="block aspect-square w-40 h-40 relative">
+            <img
+              class="absolute object-contain top-0 left-0 right-0 bottom-0 w-full h-full animate-spin-cw"
+              src="assets/loaders/basicscreenrune1.png"
+            />
+            <img
+              class="absolute object-contain top-0 left-0 right-0 bottom-0 w-full h-full animate-spin-ccw"
+              src="assets/loaders/basicscreenrune3.png"
+            />
+            <img
+              class="absolute object-contain top-0 left-0 right-0 bottom-0 w-full h-full animate-spin-ccw"
+              src="assets/loaders/basicscreenrune2.png"
+            />
+            <img
+              class="absolute object-contain top-0 left-0 right-0 bottom-0 w-full h-full animate-pulse"
+              src="assets/loaders/nwlogo.png"
+            />
+          </picture>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

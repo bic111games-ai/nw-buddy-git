@@ -1,0 +1,15 @@
+@if (showInput()) {
+  <input
+    #input
+    type="number"
+    min="0"
+    class="input px-0 rounded-sm bg-transparent w-16 text-right"
+    [(ngModel)]="value"
+    [ngModelOptions]="{ updateOn: 'blur' }"
+    (blur)="closeInput($event)"
+    (keydown.enter)="closeInput($event)"
+  />
+} @else {
+  {{ isEmpty() ? emptyText() : (value * multiply() | number: format()) }}
+  <ng-content />
+}

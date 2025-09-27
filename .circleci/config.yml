@@ -1,0 +1,136 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.2.0
+workflows:
+  ci:
+    jobs:
+      - build_live:
+          context:
+            - nw-buddy-cf
+          filters:
+            branches:
+              only:
+                - live
+      - build_preview:
+          context:
+            - nw-buddy-cf-dev
+          filters:
+            branches:
+              only:
+                - playground
+                - dev
+      - build_ptr:
+          context:
+            - nw-buddy-cf-ptr
+          filters:
+            branches:
+              only:
+                - ptr
+jobs:
+  build_live:
+    machine:
+      image: default
+    resource_class: large
+    environment:
+      NODE_OPTIONS: --max_old_space_size=6144
+      NW_WORKSPACE: LIVE
+    steps:
+      - checkout
+      - node/install:
+          node-version: '22'
+      - run:
+          name: Install pnpm package manager
+          command: |
+            corepack enable
+            corepack prepare pnpm@latest-9 --activate
+      - run:
+          name: Install Dependencies
+          command: pnpm i --frozen-lockfile
+      - run:
+          name: Download nw-data
+          command: pnpm nw-cdn download
+      # - run:
+      #     name: Build Storybook
+      #     command: pnpm build:storybook
+      # - run:
+      #     name: Test Stroybook
+      #     command: pnpm test:storybook
+      # - run:
+      #     name: Test Unit
+      #     command: pnpm test:unit
+      - run:
+          name: Build Website
+          command: pnpm build:web-cdn
+      - run:
+          name: Transform Functions
+          command: pnpm nw-functions transform
+      # - run:
+      #     name: Deliver Storybook
+      #     command: pnpm wrangler pages deploy dist/web-storybook --project-name=nw-buddy --branch=storybook-${CIRCLE_BRANCH}
+      - run:
+          name: Deliver Website
+          command: pnpm wrangler pages deploy dist/web/browser --project-name=nw-buddy --branch=${CIRCLE_BRANCH}
+
+  build_preview:
+    machine:
+      image: default
+    resource_class: large
+    environment:
+      NODE_OPTIONS: --max_old_space_size=6144
+      NW_WORKSPACE: LIVE
+    steps:
+      - checkout
+      - node/install:
+          node-version: '22'
+      - run:
+          name: Install pnpm package manager
+          command: |
+            corepack enable
+            corepack prepare pnpm@latest-9 --activate
+      - run:
+          name: Install Dependencies
+          command: pnpm i --frozen-lockfile
+      - run:
+          name: Download nw-data
+          command: pnpm nw-cdn download
+      - run:
+          name: Build Website
+          command: pnpm build:web-cdn
+      - run:
+          name: Transform Functions
+          command: pnpm nw-functions transform
+      - run:
+          name: Deliver Website
+          command: pnpm wrangler pages deploy dist/web/browser --project-name=nw-buddy --branch=${CIRCLE_BRANCH}
+
+  build_ptr:
+    machine:
+      image: default
+    resource_class: large
+    environment:
+      NODE_OPTIONS: --max_old_space_size=6144
+      NW_WORKSPACE: PTR
+    steps:
+      - checkout
+      - node/install:
+          node-version: '22'
+      - run:
+          name: Install pnpm package manager
+          command: |
+            corepack enable
+            corepack prepare pnpm@latest-9 --activate
+      - run:
+          name: Install Dependencies
+          command: pnpm i --frozen-lockfile
+      - run:
+          name: Download nw-data
+          command: pnpm nw-cdn download
+      - run:
+          name: Build Website
+          command: pnpm build:web-cdn
+      - run:
+          name: Transform Functions
+          command: pnpm nw-functions transform
+      - run:
+          name: Deliver Website
+          command: pnpm wrangler pages deploy dist/web/browser --project-name=nw-buddy --branch=${CIRCLE_BRANCH}
