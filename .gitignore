@@ -27,4 +27,9 @@ Thumbs.db
 
 #### reszta do usunięcia###
 
-/node_modules/
+/node_modules/ag-grid-community/
+/node_modules/autoprefixer/
+/node_modules/better-sqlite3/
+/node_modules/browserify-fs/
+/node_modules/chart.js/
+/node_modules/chromatic/
