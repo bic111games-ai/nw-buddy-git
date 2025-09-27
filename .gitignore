@@ -22,13 +22,17 @@ Thumbs.db
 !/.vscode/launch.json
 !/.vscode/extensions.json
 
+### Cache narzędzi (Tooling Cache) ###
+# Pliki tymczasowe generowane przez narzędzia do budowania projektu.
+.angular/
+.nx/
+.sass-cache/
 
 #### reszta do usunięcia###
 
 /dist
-
-
-
-
+/dist/data
+/dist/electron
+/dist/nw-data
 
 
