@@ -32,6 +32,11 @@ Thumbs.db
 
 /dist/data
 /dist/electron
-/dist/nw-data
-
-
+/dist/nw-data/.current
+/dist/nw-data/live.zip
+/dist/nw-data/live/actionlists
+/dist/nw-data/live/datatables
+/dist/nw-data/live/generated
+/dist/nw-data/live/localization
+/dist/nw-data/live/lyshineui
+/dist/nw-data/live/search
